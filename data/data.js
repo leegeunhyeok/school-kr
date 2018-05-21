@@ -35,8 +35,8 @@ const $data = {
     jeonnam: 'stu.jne.go.kr',   // 전남
     jeju: 'stu.jje.go.kr'       // 제주
   },
-  mealUrl: 'sts_sci_md00_001.do',
-  noticeUrl: 'sts_sci_sf01_001.do'
+  mealUrl: 'sts_sci_md00_001.do',  // 급식 URL
+  noticeUrl: 'sts_sci_sf01_001.do' // 학사일정 URL
 }
 
 module.exports = $data
