@@ -7,6 +7,19 @@
  - npm 업로드 예정
  - 본 소스코드의 school.js, src/meal.js, src/notice.js, data/data.js 파일을 사용할 프로그램 폴더에 추가합니다.
 
+## 의존성 모듈 설치하기
+ - 본 모듈을 사용하려면 아래의 두 의존성 모듈을 설치해야 합니다.
+ - [request](https://www.npmjs.com/package/request)
+ - [cheerio](https://www.npmjs.com/package/cheerio)
+ ``` bash
+ npm i request --save
+ npm i request --save
+
+ # 만약 본 프로젝트의 package.json 파일을 사용하고 있다면
+ npm i 
+ ```
+ 
+
 ## 사용 예시
 
 #### 비동기 함수 방식
