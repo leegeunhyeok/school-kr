@@ -1,8 +1,11 @@
 {
-  "name": "node_school",
+  "name": "node-school",
   "version": "1.0.0",
-  "description": "> - Node.js 기반의 경기도 교육청의 급식, 학사일정 파싱 모듈입니다.\r > - 개발자: 이근혁",
-  "main": "index.js",
+  "description": "Node.js 기반의 경기도 교육청의 급식, 학사일정 파싱 모듈입니다.\r > - 개발자: 이근혁",
+  "main": "school.js",
+  "engines": { 
+    "node": ">= 7.0.0" 
+  },
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "request": "^2.86.0"
@@ -25,5 +28,5 @@
   "bugs": {
     "url": "https://github.com/leegeunhyeok/node-school/issues"
   },
-  "homepage": "https://github.com/leegeunhyeok/node-school#readme"
+  "homepage": "https://github.com/leegeunhyeok/node-school#readme",
 }
