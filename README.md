@@ -5,21 +5,9 @@
 - Promise를 적극 지원하여 비동기 함수에서 사용할 수 있습니다.
 
 ## 설치하기
- - npm 업로드 예정
- - 본 소스코드의 school.js, src/meal.js, src/notice.js, data/data.js 파일을 사용할 프로그램 폴더에 추가합니다.
-
-## 의존성 모듈 설치하기
- - 본 모듈을 사용하려면 아래의 두 의존성 모듈을 설치해야 합니다.
- - [request](https://www.npmjs.com/package/request)
- - [cheerio](https://www.npmjs.com/package/cheerio)
- ``` bash
- npm i request --save
- npm i cheerio --save
-
- # 만약 본 프로젝트의 package.json 파일을 사용하고 있다면
- npm i 
- ```
- 
+```bash
+npm install node-school --save
+```
 
 ## 사용 예시
 
@@ -27,7 +15,7 @@
 
 ```javascript
 /* 모듈 불러오기 */
-const School = require('../school.js') 
+const School = require('node-school') 
 
 /* 객체 생성 */
 const school = new School()
@@ -54,7 +42,7 @@ sampleAsync()
 
 ```javascript
 /* 모듈 불러오기 */
-const School = require('../school.js') 
+const School = require('node-school') 
 
 /* 객체 생성 */
 const school = new School()
@@ -114,7 +102,7 @@ samplePromise()
 `school.js` 모듈을 불러와서 인스턴스를 생성합니다. <br>
 생성 후 반드시 init()를 호출하여 원하는 학교로 초기화합니다.
 ```javascript
-const School = require('./school.js')
+const School = require('node-school')
 const school = new School()
 
 /* 
@@ -129,7 +117,7 @@ school.init(type, region, schoolCode)
 
  학교 종류는 생성한 인스턴스의 `eduType` 에서 선택할 수 있습니다.
 ```javascript
-const School = require('./school.js')
+const School = require('node-school')
 const school = new School()
 
 /* 출력: 4 */
@@ -144,7 +132,7 @@ console.log(school.eduType.high)
 
  지역은 생성한 인스턴스의 `region` 에서 선택할 수 있습니다. 
 ```javascript
-const School = require('./school.js')
+const School = require('node-school')
 const school = new School()
 
 /* 출력: stu.sen.go.kr */
