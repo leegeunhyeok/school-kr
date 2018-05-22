@@ -5,7 +5,7 @@
  * 
  * @description 교육청에서 이번 달 급식, 학사일정을 파싱하여 제공합니다.
  * @author Leegeunhyeok
- * @version 1.0.0
+ * @version 1.0.1
  *
  */
 
@@ -62,6 +62,7 @@ class School {
       this._eduType = type
       this._region = region
       this.schoolCode = schoolCode
+      console.log(schoolCode, '로 재설정 되었습니다.')
     } else {
       throw new Error('교육기관 타입, 지역, 학교 코드는 필수 데이터 입니다.')
     }

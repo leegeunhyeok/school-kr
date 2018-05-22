@@ -2,7 +2,7 @@
  * sample.js
  * 
  * @description 샘플 테스트 코드입니다.
- * 
+ * @version 1.0.1
  */
 
 
@@ -21,8 +21,16 @@ const school = new School()
  * https://www.meatwatch.go.kr/biz/bm/sel/schoolListPopup.do
  * 
  * 아래 예제는 경기도의 광명경영회계고등학교를 기준으로 함
+ * 
+ * init()없이 데이터 불러올 경우 Error 발생 
  */
-school.init(school.eduType.high, school.region.gyeonggi, 'J100000488')
+
+/* 경기도 광명시의 광명고등학교로 init() */
+school.init(school.eduType.high, school.region.gyeonggi, 'J100000482')
+
+/* reset()은 init() 이후에 가능 */
+/* 경기도 광명시의 광명경영회계고등학교로 재설정 */
+school.reset(school.eduType.high, school.region.gyeonggi, 'J100000488')
 
 console.log(school.eduType.high)
 console.log(school.region.seoul)

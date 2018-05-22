@@ -3,7 +3,7 @@
  * 
  * @description 교육청에서 급식 정보 파싱 후 json 데이터를 반환합니다.
  * @author Leegeunhyeok
- * @version 1.0.0
+ * @version 1.0.1
  * 
  */
 
@@ -52,7 +52,7 @@ class Meal {
       return result
     } catch(e) {
       /* 에러 핸들링 */
-      console.log(e)
+      console.log('[Meal]', e)
       return {}
     }
   }
