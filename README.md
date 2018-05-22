@@ -1,4 +1,4 @@
-# node-school
+# node-school-kr
 > 전국 초, 등, 고등학교 및 병설유치원 급식, 학사일정 파싱 모듈
 
 전국 교육청 학생 서비스 페이지(stu.xxx.go.kr)를 파싱하여 이번 달 **학사일정**과 **급식표**를 Json 형태의 데이터로 제공합니다.
@@ -6,7 +6,7 @@
 
 ## 설치하기
 ```bash
-npm install node-school --save
+npm install node-school-kr --save
 ```
 
 ## 사용 예시
@@ -15,7 +15,7 @@ npm install node-school --save
 
 ```javascript
 /* 모듈 불러오기 */
-const School = require('node-school') 
+const School = require('node-school-kr') 
 
 /* 객체 생성 */
 const school = new School()
@@ -42,7 +42,7 @@ sampleAsync()
 
 ```javascript
 /* 모듈 불러오기 */
-const School = require('node-school') 
+const School = require('node-school-kr') 
 
 /* 객체 생성 */
 const school = new School()
@@ -102,7 +102,7 @@ samplePromise()
 `school.js` 모듈을 불러와서 인스턴스를 생성합니다. <br>
 생성 후 반드시 init()를 호출하여 원하는 학교로 초기화합니다.
 ```javascript
-const School = require('node-school')
+const School = require('node-school-kr')
 const school = new School()
 
 /* 
@@ -117,7 +117,7 @@ school.init(type, region, schoolCode)
 
  학교 종류는 생성한 인스턴스의 `eduType` 에서 선택할 수 있습니다.
 ```javascript
-const School = require('node-school')
+const School = require('node-school-kr')
 const school = new School()
 
 /* 출력: 4 */
@@ -132,7 +132,7 @@ console.log(school.eduType.high)
 
  지역은 생성한 인스턴스의 `region` 에서 선택할 수 있습니다. 
 ```javascript
-const School = require('node-school')
+const School = require('node-school-kr')
 const school = new School()
 
 /* 출력: stu.sen.go.kr */
@@ -162,7 +162,7 @@ console.log(school.region.seoul)
  학교 코드는 `X000000000` 형식의 10자리 문자열입니다.
 
 ## 문제 신고
-교육청 홈페이지의 리뉴얼 등의 문제로 파싱이 불가능 할 수 있습니다. [이슈](https://github.com/leegeunhyeok/node-school/issues)를 남겨주시면 최대한 빠르게 수정하여 반영하도록 하겠습니다.
+교육청 홈페이지의 리뉴얼 등의 문제로 파싱이 불가능 할 수 있습니다. [이슈](https://github.com/leegeunhyeok/node-school-kr/issues)를 남겨주시면 최대한 빠르게 수정하여 반영하도록 하겠습니다.
 
 ## 라이센스
 [MIT](https://github.com/agemor/school-api/blob/master/LICENSE)

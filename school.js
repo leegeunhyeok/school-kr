@@ -1,4 +1,6 @@
 /**
+ * node-school-kr Module
+ * 
  * school.js
  * 
  * @description 교육청에서 이번 달 급식, 학사일정을 파싱하여 제공합니다.
