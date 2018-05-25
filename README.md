@@ -1,15 +1,17 @@
 # node-school-kr
 > 전국 초, 등, 고등학교 및 병설유치원 급식, 학사일정 파싱 모듈
 
-<img src="https://badge.fury.io/js/node-school-kr.svg" alt="npm version" height="18">
+[![npm version](https://badge.fury.io/js/node-school-kr.svg)](https://badge.fury.io/js/node-school-kr)
+
 
 전국 교육청 학생 서비스 페이지(stu.xxx.go.kr)를 파싱하여 이번 달 **학사일정**과 **급식표**를 Json 형태의 데이터로 제공합니다.
 - Promise를 적극 지원하여 비동기 함수에서 사용할 수 있습니다.
 
 ## 설치하기
 ```bash
-npm install node-school-kr --save
+npm i node-school-kr
 ```
+
 
 ## 사용 방법
 
