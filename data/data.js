@@ -3,40 +3,73 @@
  * 
  * @description 지역별 교육청 주소, 교육기관 종류의 데이터 정의
  * @author Leegeunhyeok
- * @version 1.0.1
+ * @version 2.0.0
  * 
  */
 
-const $data = {
-  /* 교육기관 유형 */
-  eduType: {
-    kindergarden: 1, // 병설유치원
-    elementary: 2,   // 초등학교
-    middle: 3,       // 중학교
-    high: 4          // 고등학교
-  },
-  /* 지역별 교육청 주소 */
-  region: {
-    seoul: 'stu.sen.go.kr',     // 서울
-    incheon: 'stu.ice.go.kr',   // 인천
-    busan: 'stu.pen.go.kr',     // 부산
-    gwangju: 'stu.gen.go.kr',   // 광주
-    daejeon: 'stu.dge.go.kr',   // 대전
-    deagu: 'stu.dge.go.kr',     // 대구
-    sejong: 'stu.sje.go.kr',    // 세종
-    ulsan: 'stu.use.go.kr',     // 울산
-    gyeonggi: 'stu.goe.go.kr',  // 경기
-    kangwon: 'stu.kwe.go.kr',   // 강원
-    chungbuk: 'stu.cbe.go.kr',  // 충북
-    chungnam: 'stu.cne.go.kr',  // 충남
-    gyeongbuk: 'stu.gbe.go.kr', // 경북
-    gyeongnam: 'stu.gne.go.kr', // 경남
-    jeonbuk: 'stu.jbe.go.kr',   // 전북
-    jeonnam: 'stu.jne.go.kr',   // 전남
-    jeju: 'stu.jje.go.kr'       // 제주
-  },
-  mealUrl: 'sts_sci_md00_001.do',  // 급식 URL
-  noticeUrl: 'sts_sci_sf01_001.do' // 학사일정 URL
+// 교육기관 유형 심볼 Namespace
+const $EDUTYPE = {
+  KINDERGARTEN: Symbol('KINDERGARTEN'),
+  ELEMENTARY: Symbol('ELEMENTARY'),
+  MIDDLE: Symbol('MIDDLE'),
+  HIGH: Symbol('HIGH')
 }
 
-module.exports = $data
+// 관할지역 심볼 Namespace
+const $REGION = {
+  SEOUL: Symbol('SEOUL'),
+  INCHEON: Symbol('INCHEON'),
+  BUSAN: Symbol('BUSAN'),
+  GWANGJU: Symbol('GWANGJU'),
+  DAEJEON: Symbol('DAEJEON'),
+  DEAGU: Symbol('DEAGU'),
+  SEJONG: Symbol('SEJONG'),
+  ULSAN: Symbol('ULSAN'),
+  GYEONGGI: Symbol('GYEONGGI'),
+  KANGWON: Symbol('KANGWON'),
+  CHUNGBUK: Symbol('CHUNGBUK'),
+  CHUNGNAM: Symbol('CHUNGNAM'),
+  GYEONGBUK: Symbol('GYEONGBUK'),
+  GYEONGNAM: Symbol('GYEONGNAM'),
+  JEONBUK: Symbol('JEONBUK'),
+  JEONNAM: Symbol('JEONNAM'),
+  JEJU: Symbol('JEJU')
+}
+
+const $DATA = {
+  /* 교육기관 유형 */
+  EDUTYPE: {
+    [$EDUTYPE.KINDERGARTEN]: 1, // 병설유치원
+    [$EDUTYPE.ELEMENTARY]: 2,   // 초등학교
+    [$EDUTYPE.MIDDLE]: 3,       // 중학교
+    [$EDUTYPE.HIGH]: 4          // 고등학교
+  },
+  /* 지역별 교육청 주소 */
+  REGION: {
+    [$REGION.SEOUL]: 'stu.sen.go.kr',     // 서울
+    [$REGION.INCHEON]: 'stu.ice.go.kr',   // 인천
+    [$REGION.BUSAN]: 'stu.pen.go.kr',     // 부산
+    [$REGION.GWANGJU]: 'stu.gen.go.kr',   // 광주
+    [$REGION.DAEJEON]: 'stu.dge.go.kr',   // 대전
+    [$REGION.DEAGU]: 'stu.dge.go.kr',     // 대구
+    [$REGION.SEJONG]: 'stu.sje.go.kr',    // 세종
+    [$REGION.ULSAN]: 'stu.use.go.kr',     // 울산
+    [$REGION.GYEONGGI]: 'stu.goe.go.kr',  // 경기
+    [$REGION.KANGWON]: 'stu.kwe.go.kr',   // 강원
+    [$REGION.CHUNGBUK]: 'stu.cbe.go.kr',  // 충북
+    [$REGION.CHUNGNAM]: 'stu.cne.go.kr',  // 충남
+    [$REGION.GYEONGBUK]: 'stu.gbe.go.kr', // 경북
+    [$REGION.GYEONGNAM]: 'stu.gne.go.kr', // 경남
+    [$REGION.JEONBUK]: 'stu.jbe.go.kr',   // 전북
+    [$REGION.JEONNAM]: 'stu.jne.go.kr',   // 전남
+    [$REGION.JEJU]: 'stu.jje.go.kr'       // 제주
+  },
+  mealUrl: 'sts_sci_md00_001.do',    // 급식 URL
+  calendarUrl: 'sts_sci_sf01_001.do' // 학사일정 URL
+}
+
+module.exports = {
+  DATA: $DATA,
+  TYPE: $EDUTYPE,
+  REGION: $REGION
+}
