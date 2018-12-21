@@ -3,7 +3,7 @@
  * 
  * @description 지역별 교육청 주소, 교육기관 종류의 데이터 정의
  * @author Leegeunhyeok
- * @version 2.0.0
+ * @version 2.0.1
  * 
  */
 

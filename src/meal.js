@@ -3,7 +3,7 @@
  * 
  * @description 교육청에서 급식 정보 파싱 후 json 데이터를 반환합니다.
  * @author Leegeunhyeok
- * @version 2.0.0
+ * @version 2.0.1
  * 
  */
 
