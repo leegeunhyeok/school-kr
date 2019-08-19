@@ -3,7 +3,7 @@
  * 
  * @description 지역별 교육청 주소, 교육기관 종류의 데이터 정의
  * @author Leegeunhyeok
- * @version 2.1.0
+ * @version 2.1.2
  * 
  */
 
@@ -58,7 +58,7 @@ const $DATA = {
     [$REGION.KANGWON]: 'stu.kwe.go.kr',   // 강원
     [$REGION.CHUNGBUK]: 'stu.cbe.go.kr',  // 충북
     [$REGION.CHUNGNAM]: 'stu.cne.go.kr',  // 충남
-    [$REGION.GYEONGBUK]: 'stu.gbe.go.kr', // 경북
+    [$REGION.GYEONGBUK]: 'stu.gbe.kr',    // 경북
     [$REGION.GYEONGNAM]: 'stu.gne.go.kr', // 경남
     [$REGION.JEONBUK]: 'stu.jbe.go.kr',   // 전북
     [$REGION.JEONNAM]: 'stu.jne.go.kr',   // 전남
