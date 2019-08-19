@@ -2,7 +2,7 @@
  * sample.js
  * 
  * @description 샘플 테스트 코드입니다.
- * @version 2.1.0
+ * @version 2.1.2
  */
 
 /* 모듈 불러오기 */
@@ -17,8 +17,8 @@ const school = new School()
  * Region     : 교육청 지역
  * schoolCode : 학교 고유 번호
  * 
- * 학교 고유번호는 아래 링크에서 검색 가능
- * https://www.meatwatch.go.kr/biz/bm/sel/schoolListPopup.do
+ * 학교 고유번호는 아래 링크에서 검색 가능 (삭제됨)
+ * (추후 학교코드 검색 스크립트 추가 예정)
  *
  * 아래 예제는 경기도의 광명경영회계고등학교를 기준으로 함
  *
