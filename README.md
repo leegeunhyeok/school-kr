@@ -318,6 +318,7 @@ samplePromise()
 
 ### 급식 데이터 형식
 `getMeal` 반환 데이터 형식은 아래와 같습니다.
+
 | Key | Value | 비고 |
 |:--|:--:|:--|
 | 1 ~ 31 | 해당 날짜의 급식 | 급식이 없는 경우 빈 문자열 |
@@ -366,6 +367,9 @@ samplePromise()
 교육청 홈페이지의 리뉴얼 등의 문제로 파싱이 불가능 할 수 있습니다. [이슈](https://github.com/leegeunhyeok/node-school-kr/issues)를 남겨주시면 최대한 빠르게 수정하여 반영하도록 하겠습니다.
 
 ## 변경사항
+- `2.2.0`
+  - [Issue #3](https://github.com/leegeunhyeok/node-school-kr/issues/3) 기본값 옵션 추가
+  - `getMeal`, `getCalendar` 옵션 호출방식 추가
 - `2.1.2`
   - [Issue #1](https://github.com/leegeunhyeok/node-school-kr/issues/1) 경북 교육청 접속문제 수정
   - 의존 라이브러리의 보안 취약성 업데이트
