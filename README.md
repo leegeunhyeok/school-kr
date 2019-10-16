@@ -3,10 +3,9 @@
 
 [![npm version](https://badge.fury.io/js/node-school-kr.svg)](https://badge.fury.io/js/node-school-kr)
 
-본 라이브러리는 `Node.js` 환경에서 사용할 수 있는 `급식 API` + `학사일정 API` 통합 라이브러리 입니다.  
+본 라이브러리는 `Node.js` 환경에서 사용할 수 있는 Promise 기반의 `급식 API` + `학사일정 API` 통합 라이브러리 입니다.  
   
 전국 교육청 학생 서비스 페이지(stu.xxx.go.kr)를 파싱하여 이번 달 **학사일정**과 **급식 정보**를 JSON 데이터로 제공합니다.
-- Promise를 적극 지원하여 비동기 함수에서 사용할 수 있습니다.
 
 ## 설치하기
 [NPM](https://www.npmjs.com/package/node-school-kr) 저장소를 통해 다운로드 받을 수 있으며 별다른 작업 없이 바로 사용 가능합니다.
@@ -253,7 +252,7 @@ https://stu.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100000488&schulCrseScCode=4
 
 ### 급식 및 학사일정 조회
 
-#### 비동기 함수 방식
+#### 사용 예시
 ```javascript
 const School = require('node-school-kr') 
 const school = new School()
@@ -282,36 +281,25 @@ const sampleAsync = async function() {
 
   console.log(mealCustom)
   console.log(calendarCustom)
+
+  // 년도값 대신 옵션 객체를 전달하여 데이터 수집 가능
+  const optionMeal = await school.getMeal({
+    year: 2018,
+    month: 9,
+    default: '급식이 없습니다'
+  })
+  const optionCalendar = await school.getCalendar({
+    // year, month 생략시 현재 시점 기준으로 조회됨
+    default: '일정 없는 날'
+  })
+
+  console.log(optionMeal)
+  console.log(optionCalendar)
 }
 
 sampleAsync()
 ```
 
-#### 프라미스 방식
-```javascript
-const School = require('node-school-kr') 
-const school = new School()
-
-school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488')
-
-const samplePromise = function() {
-  school.getMeal().then(meal => {
-    // 오늘 날짜
-    console.log(`${meal.month}월 ${meal.day}일`)
-
-    // 오늘 급식 정보 
-    console.log(meal.today)
-
-    // 이번 달 급식 정보 
-    console.log(meal)
-
-    // 년도, 월 지정 가능
-    return school.getCalendar(2018, 7)
-  }).then(calendar) => {
-    // 2018년 7월 학사일정
-    console.log(calendar)
-  })
-}
 
 samplePromise()
 ```
@@ -321,7 +309,7 @@ samplePromise()
 
 | Key | Value | 비고 |
 |:--|:--:|:--|
-| 1 ~ 31 | 해당 날짜의 급식 | 급식이 없는 경우 빈 문자열 |
+| 1 ~ 31 | 해당 날짜의 급식 | 급식이 없는 경우 option.default 값 혹은  빈 문자열 |
 | month | 이번 달 | |
 | day | 오늘 날짜 | 사용자 지정 년도/월이 이번 달이 아닌 경우 0 |
 | today | 오늘 급식 | 급식이 없는 경우 빈 문자열 |
@@ -330,7 +318,7 @@ samplePromise()
   '1': '[중식]\n발아현미밥\n미역국5.6.9....', // 이번달 1일 메뉴
   '2': '[중식]\n얼갈이된장무침5.6.\n칼슘찹쌀....', // 이번달 2일 메뉴 
   '3': '[중식]\n투움바파스타(주식)1.2.5.6.9.13.15.\n....', // 이번달 3일 메뉴
-  '4': '', // 급식이 없을 경우 빈 문자열
+  '4': '', // 급식이 없을 경우 option.default 값 혹은 빈 문자열
   '5': '',
   ...
   'year': 2018, // 이번 년도
@@ -345,13 +333,13 @@ samplePromise()
 
 | Key | Value | 비고 |
 |:--|:--:|:--|
-| 1 ~ 31 | 해당 날짜의 일정 | 일정이 없는 경우 빈 문자열 |
+| 1 ~ 31 | 해당 날짜의 일정 | 일정이 없는 경우 option.default 값 혹은 빈 문자열 |
 | year | 이번 년도 | |
 | month | 이번 달 | |
 ```javascript
 {
   '1': '', // 이번 달 1일의 일정
-  '2': '', // 일정이 없을 경우 빈 문자열
+  '2': '', // 일정이 없을 경우 option.default 값 혹은 빈 문자열
   '3': '',
   '4': '개교기념일', // 4일 일정
   '5': '',
