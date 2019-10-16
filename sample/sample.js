@@ -47,6 +47,14 @@ const test = async function () {
     const meal = await school.getMeal()
   */
   const meal = await school.getMeal()
+  // year 인자 위치에 옵션 객체 전달 가능
+  // const meal = await school.getMeal({
+  //   year: 2019,
+  //   month: 4,
+  //   default: '급식 없음'
+  // })
+
+  console.log(a)
 
   console.log('[오늘 날짜]')
   console.log(`${meal.month}월 ${meal.day}일\n`)
@@ -61,6 +69,7 @@ const test = async function () {
   console.log('[2018년 7월 학사일정]')
   // 급식과 마찬가지로 년도와 월을 지정하면 해당 데이터를 반환하고,
   // 년도와 월을 지정하지 않으면 이번 달 데이터를 반환합니다.
+  // year 위치에 옵션 객체 전달 가능
   console.log(await school.getCalendar(2018, 7))
 }
 
