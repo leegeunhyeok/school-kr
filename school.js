@@ -152,12 +152,17 @@ class School {
 
   /**
    * @description 이번 달 급식 데이터를 파싱합니다.
-   * @param {number} year 지정한 연도
+   * @param {any} year 지정한 연도 or 옵션
    * @param {number} month 지정한 달
    * @return {any} 이번 달 급식 데이터
    */
   getMeal (year, month) {
-    if (!((year !== undefined && month !== undefined) || (year === undefined && month === undefined))) {
+    let option = {}
+    if (typeof year === 'object') {
+      option = year
+      year = option['year']
+      month = option['month']
+    } else if (!((year !== undefined && month !== undefined) || (year === undefined && month === undefined))) {
       throw new Error('날짜를 지정하려면 년도와 월 모두 지정해주세요')
     }
 
@@ -166,7 +171,11 @@ class School {
     }
 
     if (this._initialized) {
-      return this._meal.getData(this.createUrl('meal', year, month))
+      option = option || {}
+      let defaultMealValue = option['default'] || ''
+      return this._meal.getData(
+        this.createUrl('meal', year, month), defaultMealValue
+      )
     } else {
       throw new Error('인스턴스가 초기화 되지 않았습니다.')
     }
