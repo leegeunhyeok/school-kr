@@ -14,9 +14,10 @@ class Calendar {
   /**
    * @description 이번 달 학사일정 데이터를 파싱합니다.
    * @param {string} url 파싱할 타겟 URL
+   * @param {string} defaultCalendarValue 일정이 없는 경우의 기본값
    * @return {any} 이번 달 학사일정 데이터
    */
-  async getData (url) {
+  async getData (url, defaultCalendarValue) {
     try {
       const body = await new Promise((resolve, reject) => {
         request(url, (err, res, body) => {
@@ -53,7 +54,7 @@ class Calendar {
           const day = parseInt(dayText)
 
           // 현재 날짜의 일정 데이터 저장 변수
-          let content = ''
+          let content = defaultCalendarValue + ' '
 
           // 하루에 여러 일정이 있을 수 있음. 반복하며 모든 일정 추가
           $(this).find('a').each(function () {
