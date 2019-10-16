@@ -14,9 +14,10 @@ class Meal {
   /**
    * @description 이번 달 급식 데이터를 파싱합니다.
    * @param {string} url 파싱할 타겟 URL
+   * @param {string} defaultMealValue 급식이 없는 경우의 기본값
    * @return {any} 이번 달 급식 데이터
    */
-  async getData (url) {
+  async getData (url, defaultMealValue) {
     try {
       let body = await new Promise((resolve, reject) => {
         request(url, (err, res, body) => {
@@ -92,7 +93,7 @@ class Meal {
 
           // 급식이 없을 경우 빈 문자열로 설정
           if (menu.match(/^[0-9]{1,2}/)) {
-            menu = ''
+            menu = defaultMealValue
           }
 
           // 해당 날짜에 급식 데이터 추가
