@@ -2,7 +2,7 @@
  * sample.js
  * 
  * @description 샘플 테스트 코드입니다.
- * @version 2.1.2
+ * @version 2.2.0
  */
 
 /* 모듈 불러오기 */
