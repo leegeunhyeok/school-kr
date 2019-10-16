@@ -54,8 +54,6 @@ const test = async function () {
   //   default: '급식 없음'
   // })
 
-  console.log(a)
-
   console.log('[오늘 날짜]')
   console.log(`${meal.month}월 ${meal.day}일\n`)
 
