@@ -3,7 +3,7 @@
  *
  * @description 교육청에서 급식 정보 파싱 후 json 데이터를 반환합니다.
  * @author Leegeunhyeok
- * @version 2.2.0
+ * @version 2.2.1
  *
  */
 
@@ -54,7 +54,7 @@ class Calendar {
           const day = parseInt(dayText)
 
           // 현재 날짜의 일정 데이터 저장 변수
-          let content = defaultCalendarValue + ' '
+          let content = ''
 
           // 하루에 여러 일정이 있을 수 있음. 반복하며 모든 일정 추가
           $(this).find('a').each(function () {
@@ -65,6 +65,8 @@ class Calendar {
               content += temp + ','
             }
           })
+
+          content = content || defaultCalendarValue + ' '
 
           // 결과에 현재 날짜 일정 데이터 추가
           result[day] = content.slice(0, -1) // 마지막 ',' 문자 제거
