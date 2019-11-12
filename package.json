@@ -1,6 +1,6 @@
 {
   "name": "node-school-kr",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Node.js 기반 전국 교육청의 급식, 학사일정 API 라이브러리",
   "main": "school.js",
   "engines": {

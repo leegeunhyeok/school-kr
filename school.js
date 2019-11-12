@@ -9,7 +9,7 @@
  * @description 전국 급식, 학사일정 API
  * @author Leegeunhyeok
  * @license MIT
- * @version 2.2.1
+ * @version 2.2.2
  *
  */
 
