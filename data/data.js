@@ -50,7 +50,7 @@ const $DATA = {
     [$REGION.INCHEON]: 'stu.ice.go.kr',   // 인천
     [$REGION.BUSAN]: 'stu.pen.go.kr',     // 부산
     [$REGION.GWANGJU]: 'stu.gen.go.kr',   // 광주
-    [$REGION.DAEJEON]: 'stu.dge.go.kr',   // 대전
+    [$REGION.DAEJEON]: 'stu.dje.go.kr',   // 대전
     [$REGION.DEAGU]: 'stu.dge.go.kr',     // 대구
     [$REGION.SEJONG]: 'stu.sje.go.kr',    // 세종
     [$REGION.ULSAN]: 'stu.use.go.kr',     // 울산
