@@ -18,27 +18,11 @@ const { type, region, data } = Data;
 
 class School {
   /**
-   * @static TYPE Symbols
-   */
-  static get Type () {
-    return this._type;
-  }
-  
-  /**
-   * @static REGION Symbols
-   */
-  static get Region () {
-    return this._region;
-  }
-
-  /**
    * @constructor
    */
   constructor () {
     this._request = new core.RequestManager(); // HTTP 요청 관리 객체
     this._data = data;                         // 데이터 정의 객체
-    this._type = type;                         // 교육기관 유형 데이터
-    this._region = region;                     // 지역별 교육청 주소 데이터
     this._searchUrl = data.searchUrl;          // 검색 URL End-point
     this._mealUrl = data.mealUrl;              // 급식 URL End-point
     this._calendarUrl = data.calendarUrl;      // 학사일정 URL End-point
@@ -50,7 +34,7 @@ class School {
 
   _makeUrl (region, url) {
     const host = this._data.REGION[region];
-    return `https://${host}${url}`;
+    return `https://${host}/${url}`;
   }
 
   init (type, region, schoolCode) {
@@ -96,4 +80,7 @@ class School {
   }
 }
 
-export default School;
+School.Type = type;
+School.Region = region;
+
+module.exports = School;
