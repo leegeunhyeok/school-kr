@@ -62,8 +62,8 @@ const $DATA = {
     [$REGION.JEJU]: 'stu.jje.go.kr'       // 제주
   },
   searchUrl: 'spr_ccm_cm01_100.ws', // 검색
-  mealUrl: 'sts_sci_md00_001.do',    // 급식 URL
-  calendarUrl: 'sts_sci_sf01_001.do' // 학사일정 URL
+  mealUrl: 'sts_sci_md00_001.ws',    // 급식 URL
+  calendarUrl: 'sts_sci_sf01_001.ws' // 학사일정 URL
 };
 
 export default { type: $EDUTYPE, region: $REGION, data: $DATA };
