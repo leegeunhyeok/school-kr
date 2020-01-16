@@ -1,10 +1,7 @@
 /**
- * data.js
- * 
  * @description 지역별 교육청 주소, 교육기관 종류의 데이터 정의
  * @author Leegeunhyeok
- * @version 2.2.2
- * 
+ * @version 3.0.0
  */
 
 // 교육기관 유형 심볼 Namespace
@@ -13,7 +10,7 @@ const $EDUTYPE = {
   ELEMENTARY: Symbol('ELEMENTARY'),
   MIDDLE: Symbol('MIDDLE'),
   HIGH: Symbol('HIGH')
-}
+};
 
 // 관할지역 심볼 Namespace
 const $REGION = {
@@ -34,7 +31,7 @@ const $REGION = {
   JEONBUK: Symbol('JEONBUK'),
   JEONNAM: Symbol('JEONNAM'),
   JEJU: Symbol('JEJU')
-}
+};
 
 const $DATA = {
   /* 교육기관 유형 */
@@ -64,12 +61,9 @@ const $DATA = {
     [$REGION.JEONNAM]: 'stu.jne.go.kr',   // 전남
     [$REGION.JEJU]: 'stu.jje.go.kr'       // 제주
   },
+  search: 'spr_ccm_cm01_100.ws', // 검색
   mealUrl: 'sts_sci_md00_001.do',    // 급식 URL
   calendarUrl: 'sts_sci_sf01_001.do' // 학사일정 URL
-}
+};
 
-module.exports = {
-  DATA: $DATA,
-  TYPE: $EDUTYPE,
-  REGION: $REGION
-}
+export default { DATA: $DATA, TYPE: $EDUTYPE, REGION: $REGION };
