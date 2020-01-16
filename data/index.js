@@ -66,4 +66,4 @@ const $DATA = {
   calendarUrl: 'sts_sci_sf01_001.do' // 학사일정 URL
 };
 
-export default { DATA: $DATA, TYPE: $EDUTYPE, REGION: $REGION };
+export default { type: $EDUTYPE, region: $REGION, data: $DATA };
