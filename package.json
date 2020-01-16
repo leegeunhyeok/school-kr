@@ -6,9 +6,6 @@
   "engines": {
     "node": ">= 7.0.0"
   },
-  "dependencies": {
-    "axios": "^0.19.1"
-  },
   "scripts": {
     "dev": "npx babel-node index.js",
     "build": "npx babel . --ignore node_modules --ignore sample -d dist/",
@@ -29,6 +26,9 @@
     "url": "https://github.com/leegeunhyeok/node-school-kr/issues"
   },
   "homepage": "https://github.com/leegeunhyeok/node-school-kr#readme",
+  "dependencies": {
+    "axios": "^0.19.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
     "@babel/core": "^7.8.3",
