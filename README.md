@@ -355,6 +355,10 @@ samplePromise()
 교육청 홈페이지의 리뉴얼 등의 문제로 파싱이 불가능 할 수 있습니다. [이슈](https://github.com/leegeunhyeok/node-school-kr/issues)를 남겨주시면 최대한 빠르게 수정하여 반영하도록 하겠습니다.
 
 ## 변경사항
+- `2.2.2`
+  - [Issue #5](https://github.com/leegeunhyeok/node-school-kr/issues/5) 대전 교육청 URL 문제 수정
+- `2.2.1`
+  - [Issue #4](https://github.com/leegeunhyeok/node-school-kr/issues/4) 학사일정 기본값 오류 수정
 - `2.2.0`
   - [Issue #3](https://github.com/leegeunhyeok/node-school-kr/issues/3) 기본값 옵션 추가
   - `getMeal`, `getCalendar` 옵션 호출방식 추가
