@@ -77,7 +77,6 @@ class RequestManager {
           .join('')
           .match(/JSESSIONID=(.*?);/)
 
-        console.log(sid[1])
         this._sid = sid[1]
         this._expires = Date.now() + this._expiresTime
       });
