@@ -300,11 +300,8 @@ const sampleAsync = async function() {
 sampleAsync()
 ```
 
-
-samplePromise()
-```
-
 ### 급식 데이터 형식
+
 `getMeal` 반환 데이터 형식은 아래와 같습니다.
 
 | Key | Value | 비고 |
@@ -313,6 +310,7 @@ samplePromise()
 | month | 이번 달 | |
 | day | 오늘 날짜 | 사용자 지정 년도/월이 이번 달이 아닌 경우 0 |
 | today | 오늘 급식 | 급식이 없는 경우 빈 문자열 |
+
 ```javascript
 {
   '1': '[중식]\n발아현미밥\n미역국5.6.9....', // 이번달 1일 메뉴
@@ -336,6 +334,7 @@ samplePromise()
 | 1 ~ 31 | 해당 날짜의 일정 | 일정이 없는 경우 option.default 값 혹은 빈 문자열 |
 | year | 이번 년도 | |
 | month | 이번 달 | |
+
 ```javascript
 {
   '1': '', // 이번 달 1일의 일정
