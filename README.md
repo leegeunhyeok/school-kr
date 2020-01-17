@@ -390,4 +390,5 @@ samplePromise()
 
 
 ## 정보
-본 프로젝트는 [School API](https://github.com/agemor/school-api)를 참고하여 Node.js 환경에서 사용할 수 있도록 새로 포팅한 프로젝트입니다.
+본 프로젝트는 [School API](https://github.com/agemor/school-api)를 참고하여 Node.js 환경에서 사용할 수 있도록 새로 포팅한 프로젝트입니다.  
+`3.0.0` 버전부터 완전히 새롭게 개발되어 성능 및 안정성이 크게 개선되었습니다.
