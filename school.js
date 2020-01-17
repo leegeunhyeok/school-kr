@@ -13,6 +13,7 @@
 // import { RequestManager } from './src/core';
 
 import core from './src/core';
+import util from './src/util';
 import Data from './data';
 const { type, region, data } = Data;
 
@@ -43,20 +44,6 @@ class School {
   _makeUrl (region, url) {
     const host = this._data.REGION[region];
     return `https://${host}/${url}`;
-  }
-
-  _convertNumber (number, length) {
-    if (length === undefined) {
-      return number.toString();
-    }
-
-    const targetNumber = number.toString();
-    let p = '';
-    for (let i = 0; i < targetNumber.length - length; i++) {
-      p += '0';
-    }
-
-    return p + targetNumber;
   }
 
   init (type, region, schoolCode) {
@@ -131,10 +118,10 @@ class School {
     const mealRequestUrl = this._makeUrl(this._schoolRegion, this._mealUrl);
     return this._request.post(mealRequestUrl, {
       ...(year ? {
-        ay: this._convertNumber(year)
+        ay: util.paddingNumber(year)
       } : null),
       ...(month ? {
-        mm: this._convertNumber(month, 2)
+        mm: util.paddingNumber(month, 2)
       } : null),
       schulCode: this._schoolCode,
       schulCrseScCode: this._data.EDUTYPE[this._schoolType].toString()
