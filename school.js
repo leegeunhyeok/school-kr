@@ -1,12 +1,12 @@
 /**
- * @name node-school-kr
+ * @name school-kr
  * @description 전국 교육청 급식, 학사일정 파싱 라이브러리
  * @author Leegeunhyeok
  * @license MIT
  * @version 3.0.0
  *
- * Github : https://github.com/leegeunhyeok/node-school-kr
- * NPM : https://www.npmjs.com/package/node-school-kr
+ * Github : https://github.com/leegeunhyeok/school-kr
+ * NPM : https://www.npmjs.com/package/school-kr
  */
 
 // 아래 코드는 트랜스파일 할 경우 정상 동작하지 않음 (Babel 7, @babel/preset-env)

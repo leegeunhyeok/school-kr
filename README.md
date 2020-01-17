@@ -1,16 +1,16 @@
-# node-school-kr
+# school-kr
 > 전국 초, 등, 고등학교 및 병설유치원 급식, 학사일정 파싱 라이브러리
 
-[![npm version](https://badge.fury.io/js/node-school-kr.svg)](https://badge.fury.io/js/node-school-kr)
+[![npm version](https://badge.fury.io/js/school-kr.svg)](https://badge.fury.io/js/school-kr)
 
 본 라이브러리는 `Node.js` 환경에서 사용할 수 있는 Promise 기반의 `급식 API` + `학사일정 API` 통합 라이브러리 입니다.  
   
 전국 교육청 학생 서비스 페이지(stu.xxx.go.kr)를 파싱하여 이번 달 **학사일정**과 **급식 정보**를 JSON 데이터로 제공합니다.
 
 ## 설치하기
-[NPM](https://www.npmjs.com/package/node-school-kr) 저장소를 통해 다운로드 받을 수 있으며 별다른 작업 없이 바로 사용 가능합니다.
+[NPM](https://www.npmjs.com/package/school-kr) 저장소를 통해 다운로드 받을 수 있으며 별다른 작업 없이 바로 사용 가능합니다.
 ```bash
-npm i node-school-kr
+npm i school-kr
 ```
 
 ## 테스트
@@ -25,7 +25,7 @@ npm test
 ### School
 모듈을 불러오면 School 클래스의 인스턴스를 생성할 수 있습니다.
 ```javascript
-const School = require('node-school-kr')
+const School = require('school-kr')
 new School()
 ```
 - - -
@@ -134,13 +134,13 @@ school.getCalendar(year, month)
 ## 사용 방법
 
 ### School 인스턴스 생성
-`node-school-kr` 모듈을 불러온 후 인스턴스를 생성합니다.  
+`school-kr` 모듈을 불러온 후 인스턴스를 생성합니다.  
 생성 후 반드시 `init()`를 호출하여 데이터를 조회할 학교로 초기화합니다.
 
 - init() 호출 없이 데이터를 불러올 경우 Error가 Throw 됩니다.
 
 ```javascript
-const School = require('node-school-kr')
+const School = require('school-kr')
 const school = new School()
 
 /* 
@@ -155,7 +155,7 @@ school.init(/* Type */, /* Region */, /* SchoolCode */)
 
  학교 종류는 `School.Type` 에서 선택할 수 있습니다.
 ```javascript
-const School = require('node-school-kr')
+const School = require('school-kr')
 
 /* 4 */
 console.log(School.Type.HIGH)
@@ -172,7 +172,7 @@ console.log(School.Type.HIGH)
 
  지역은 생성한 `School.Region` 에서 선택할 수 있습니다. 
 ```javascript
-const School = require('node-school-kr')
+const School = require('school-kr')
 
 /* stu.sen.go.kr */
 console.log(School.Region.SEOUL)
@@ -214,7 +214,7 @@ console.log(School.Region.SEOUL)
 
 ### 인스턴스 초기화
 ```javascript
-const School = require('node-school-kr') 
+const School = require('school-kr') 
 const school = new School()
 
 school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488')
@@ -222,7 +222,7 @@ school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488')
 
 ### 인스턴스 재설정
 ```javascript
-const School = require('node-school-kr')
+const School = require('school-kr')
 const school = new School()
 
 /* 경기도 광명시의 광명고등학교로 init() */
@@ -235,7 +235,7 @@ school.reset(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488')
 ### 타겟 URL 조회
 급식 / 학사일정 정보는 타겟 URL에 접속하여 데이터를 파싱합니다.
 ```javascript
-const School = require('node-school-kr') 
+const School = require('school-kr') 
 const school = new School()
 
 school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488')
@@ -254,7 +254,7 @@ https://stu.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100000488&schulCrseScCode=4
 
 #### 사용 예시
 ```javascript
-const School = require('node-school-kr') 
+const School = require('school-kr') 
 const school = new School()
 
 school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488')
@@ -351,14 +351,14 @@ sampleAsync()
 ```
 
 ## 문제 신고
-교육청 홈페이지의 리뉴얼 등의 문제로 파싱이 불가능 할 수 있습니다. [이슈](https://github.com/leegeunhyeok/node-school-kr/issues)를 남겨주시면 최대한 빠르게 수정하여 반영하도록 하겠습니다.
+교육청 홈페이지의 리뉴얼 등의 문제로 파싱이 불가능 할 수 있습니다. [이슈](https://github.com/leegeunhyeok/school-kr/issues)를 남겨주시면 최대한 빠르게 수정하여 반영하도록 하겠습니다.
 
 ## 변경사항
 - `2.2.0`
-  - [Issue #3](https://github.com/leegeunhyeok/node-school-kr/issues/3) 기본값 옵션 추가
+  - [Issue #3](https://github.com/leegeunhyeok/school-kr/issues/3) 기본값 옵션 추가
   - `getMeal`, `getCalendar` 옵션 호출방식 추가
 - `2.1.2`
-  - [Issue #1](https://github.com/leegeunhyeok/node-school-kr/issues/1) 경북 교육청 접속문제 수정
+  - [Issue #1](https://github.com/leegeunhyeok/school-kr/issues/1) 경북 교육청 접속문제 수정
   - 의존 라이브러리의 보안 취약성 업데이트
 - `2.1.1`
   - 의존 라이브러리의 보안 취약성 업데이트
@@ -379,7 +379,7 @@ sampleAsync()
   - 코드 주석 업데이트
 - `1.0.1`
   - NPM 저장소와 이름 동일하게 Git 저장소 이름 변경 (이미 사용중인 이름)
-    - node-school -> node-school-kr
+    - node-school -> school-kr
   - README 문서 내용 수정
   - 에러 메시지 구분 문자 추가 (급식 파싱 에러인지 학사일정 파싱 에러인지 구분)
 - `1.0.0` - 첫 번째 릴리즈!
