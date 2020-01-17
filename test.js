@@ -1,4 +1,4 @@
-const School = require('./dist/index')
+const School = require('./dist/entry')
 const school = new School()
 school.search(School.Region.GYEONGGI, '광명경영회계고')
   .then(result => {

@@ -185,4 +185,4 @@ class School {
 School.Type = type;
 School.Region = region;
 
-module.exports = School;
+export default School;
