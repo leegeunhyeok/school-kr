@@ -29,12 +29,34 @@ class School {
 
     this._schoolType = null;   // init한 교육기관 유형 심볼 값
     this._schoolRegion = null; // init한 지역별 교육청 주소 심볼 값
-    this._scoolCode = null;    // init한 학교 코드 값
+    this._schoolCode = null;    // init한 학교 코드 값
+
+    this._init = false;
+  }
+
+  _prepare () {
+    if (!this._init) {
+      throw new Error('학교 정보가 설정되지 않았습니다.');
+    }
   }
 
   _makeUrl (region, url) {
     const host = this._data.REGION[region];
     return `https://${host}/${url}`;
+  }
+
+  _convertNumber (number, length) {
+    if (length === undefined) {
+      return number.toString();
+    }
+
+    const targetNumber = number.toString();
+    let p = '';
+    for (let i = 0; i < targetNumber.length - length; i++) {
+      p += '0';
+    }
+
+    return p + targetNumber;
   }
 
   init (type, region, schoolCode) {
@@ -45,6 +67,11 @@ class School {
     if (!(schoolCode && typeof schoolCode === 'string')) {
       throw new Error('학교 코드 값을 확인해주세요');
     }
+
+    this._schoolType = type;
+    this._schoolRegion = region;
+    this._schoolCode = schoolCode;
+    this._init = true;
   }
 
   /**
@@ -77,6 +104,81 @@ class School {
           };
         });
       });
+  }
+
+  getMeal (year, month) {
+    this._prepare();
+    let option = {};
+    if (typeof year === 'object') {
+      option = year;
+      year = option['year'];
+      month = option['month'];
+    } else if (
+      year === undefined && month === undefined
+    ) {
+      year = 0;
+      month = 0;
+    } else if (
+      year === undefined || month === undefined
+    ) {
+      throw new Error('날짜를 지정하려면 년도와 월 모두 지정해주세요');
+    }
+
+    if (month !== 0 && month < 1 || month > 12) {
+      throw new Error('월(Month)은 1~12 범위로 지정해주세요');
+    }
+
+    const mealRequestUrl = this._makeUrl(this._schoolRegion, this._mealUrl);
+    return this._request.post(mealRequestUrl, {
+      ...(year ? {
+        ay: this._convertNumber(year)
+      } : null),
+      ...(month ? {
+        mm: this._convertNumber(month, 2)
+      } : null),
+      schulCode: this._schoolCode,
+      schulCrseScCode: this._data.EDUTYPE[this._schoolType].toString()
+    }).then(({ data }) => {
+      if (data.result.status === 'error') {
+        throw new Error(data.result.message);
+      }
+
+      function parseMeal (d) {
+        if (d) {
+          const match = d.match(/^[0-9]{1,2}/);
+          if (match) {
+            const date = match[0];
+            const menu = d.slice(date.length);
+            return {
+              date,
+              menu: menu ? menu
+                .replace(/\s/g, '')
+                .replace(/<br\/>/g, '\n')
+                .slice(1)
+                : ''
+            };
+          } else {
+            return null;
+          }
+        } else {
+          return null;
+        }
+      }
+
+      const mealData = [];
+      data.resultSVO.mthDietList.map(meal => {
+        mealData.push(parseMeal(meal.sun));
+        mealData.push(parseMeal(meal.mon));
+        mealData.push(parseMeal(meal.tue));
+        mealData.push(parseMeal(meal.wed));
+        mealData.push(parseMeal(meal.the));
+        mealData.push(parseMeal(meal.fri));
+        mealData.push(parseMeal(meal.sat));
+      });
+
+      // TODO: 급식 데이터 정제
+      return mealData;
+    });
   }
 }
 
