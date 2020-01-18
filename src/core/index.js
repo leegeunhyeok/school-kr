@@ -13,7 +13,7 @@ class RequestManager {
     this._expires = null;
 
     // 세션 갱신 시간
-    this._expiresTime = 1000 * 60 * 30
+    this._expiresTime = 1000 * 60 * 30;
   }
 
   /**
@@ -73,12 +73,12 @@ class RequestManager {
         // 쿠키에서 세션 ID 추출
         const sid = res.headers['set-cookie']
           .join('')
-          .match(/JSESSIONID=(.*?);/)
+          .match(/JSESSIONID=(.*?);/);
 
-        this._sid = sid[1]
-        this._expires = Date.now() + this._expiresTime
+        this._sid = sid[1];
+        this._expires = Date.now() + this._expiresTime;
       });
   }
 }
 
-export default { RequestManager }
+export default { RequestManager };
