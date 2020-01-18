@@ -133,14 +133,10 @@ class School {
       year = option['year'] || currentDate.getFullYear();
       month = option['month'] || currentDate.getMonth() + 1;
     } else if (
-      year === undefined && month === undefined
+      year === undefined || month === undefined
     ) {
       year = currentDate.getFullYear();
       month = currentDate.getMonth() + 1;
-    } else if (
-      year === undefined || month === undefined
-    ) {
-      throw new Error('날짜를 지정하려면 년도와 월 모두 지정해주세요');
     }
 
     if (year <= 0) {
@@ -234,15 +230,11 @@ class School {
       year = option['year'] || currentDate.getFullYear();
       month = option['month'] || currentDate.getMonth() + 1;
     } else if (
-      year === undefined && month === undefined
+      year === undefined || month === undefined
     ) {
       // 인자가 없는 경우 현재 시점의 날짜로 설정
       year = currentDate.getFullYear();
       month = currentDate.getMonth() + 1;
-    } else if (
-      year === undefined || month === undefined
-    ) {
-      throw new Error('날짜를 지정하려면 년도와 월 모두 지정해주세요');
     }
 
     if (year <= 0) {
@@ -275,16 +267,18 @@ class School {
        * 학사일정 데이터를 정제하여 반환합니다.
        * @param {string} ev 학사일정 값
        */
-      function parseCalendar (ev) {
+      function parseCalendar (ev, sep) {
         if (ev) {
           let res = '';
           // 하루에 2개 이상의 일정이 있는 경우 | 로 구분되어있음
           ev.split('|').forEach(e => {
             // : 문자로 학사일정에 날짜,일정 등이 구분되어있으며 뒤에서 두 번째 값이 학사일정 값
             const eventSplited = e.split(':');
-            res += eventSplited[eventSplited.length - 2] + '\n';
+            res += eventSplited[eventSplited.length - 2] + sep;
           });
-          return res.slice(0, res.length - 1);
+
+          // 맨 뒤의 구분자 삭제
+          return res.slice(0, res.length - sep.length);
         } else {
           return null;
         }
@@ -296,7 +290,7 @@ class School {
         // day1, event1 과 같은 형식의 프로퍼티에 날짜와 학사일정 데이터가 존재함
         for (let i = 1; i <= 7; i++) {
           const date = parseInt(calendar['day' + i]).toString();
-          const event = parseCalendar(calendar['event' + i]);
+          const event = parseCalendar(calendar['event' + i], option.separator || ',');
           calendarData.push({ date, event });
         }
       });
