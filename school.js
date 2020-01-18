@@ -30,9 +30,9 @@ class School {
 
     this._schoolType = null;   // init한 교육기관 유형 심볼 값
     this._schoolRegion = null; // init한 지역별 교육청 주소 심볼 값
-    this._schoolCode = null;    // init한 학교 코드 값
+    this._schoolCode = null;   // init한 학교 코드 값
 
-    this._init = false;
+    this._init = false; // 학교 초기화 여부
   }
 
   _prepare () {
@@ -44,6 +44,10 @@ class School {
   _makeUrl (region, url) {
     const host = this._data.REGION[region];
     return `https://${host}/${url}`;
+  }
+
+  _getSemesterYear (year, month) {
+    return month <= 2 ? year - 1 : year;
   }
 
   init (type, region, schoolCode) {
@@ -100,8 +104,8 @@ class School {
 
     if (typeof year === 'object') {
       option = year;
-      year = option['year'];
-      month = option['month'];
+      year = option['year'] || currentDate.getFullYear();
+      month = option['month'] || currentDate.getMonth() + 1;
     } else if (
       year === undefined && month === undefined
     ) {
@@ -113,16 +117,23 @@ class School {
       throw new Error('날짜를 지정하려면 년도와 월 모두 지정해주세요');
     }
 
-    if (month !== 0 && month < 1 || month > 12) {
-      throw new Error('월(Month)은 1~12 범위로 지정해주세요');
+    if (year <= 0) {
+      throw new Error('년도(year) 값을 확인해주세요');
     }
 
+    if (month !== 0 && month < 1 || month > 12) {
+      throw new Error('월(month)은 1~12 범위로 지정해주세요');
+    }
+
+    const schulCrseScCode = this._data.EDUTYPE[this._schoolType].toString();
+    const schulKndScCode = '0' + schulCrseScCode;
     const mealRequestUrl = this._makeUrl(this._schoolRegion, this._mealUrl);
     return this._request.post(mealRequestUrl, {
-      ay: util.paddingNumber(year),
+      ay: util.paddingNumber(this._getSemesterYear(year, month)),
       mm: util.paddingNumber(month, 2),
       schulCode: this._schoolCode,
-      schulCrseScCode: this._data.EDUTYPE[this._schoolType].toString()
+      schulKndScCode,
+      schulCrseScCode
     }).then(({ data }) => {
       if (data.result.status === 'error') {
         throw new Error(data.result.message);
@@ -164,14 +175,98 @@ class School {
       const res = {};
       mealData.forEach(meal => {
         if (meal && meal.date) {
-          res[meal.date] = meal.menu || (option.default || '')
+          res[meal.date] = meal.menu || (option.default || '');
         }
       });
 
-      res.year = year
-      res.month = month
-      res.day = currentDate.getMonth() + 1 === month ? currentDate.getDate() : 0
-      res.today = res[res.day] || ''
+      res.year = year;
+      res.month = month;
+      res.day = currentDate.getMonth() + 1 === month ? currentDate.getDate() : 0;
+      res.today = year === currentDate.getFullYear() &&
+                  month === (currentDate.getMonth() + 1) ?
+                  res[res.day] || '' : '';
+
+      return res;
+    });
+  }
+
+  getCalendar (year, month) {
+    this._prepare();
+    let option = {};
+    const currentDate = new Date();
+
+    if (typeof year === 'object') {
+      option = year;
+      year = option['year'] || currentDate.getFullYear();
+      month = option['month'] || currentDate.getMonth() + 1;
+    } else if (
+      year === undefined && month === undefined
+    ) {
+      year = currentDate.getFullYear();
+      month = currentDate.getMonth() + 1;
+    } else if (
+      year === undefined || month === undefined
+    ) {
+      throw new Error('날짜를 지정하려면 년도와 월 모두 지정해주세요');
+    }
+
+    if (year <= 0) {
+      throw new Error('년도(year) 값을 확인해주세요');
+    }
+
+    if (month !== 0 && month < 1 || month > 12) {
+      throw new Error('월(month)은 1~12 범위로 지정해주세요');
+    }
+
+    const schulCrseScCode = this._data.EDUTYPE[this._schoolType].toString();
+    const schulKndScCode = '0' + schulCrseScCode;
+    const mealRequestUrl = this._makeUrl(this._schoolRegion, this._calendarUrl);
+    return this._request.post(mealRequestUrl, {
+      ay: util.paddingNumber(this._getSemesterYear(year, month)),
+      mm: util.paddingNumber(month, 2),
+      schulCode: this._schoolCode,
+      schulKndScCode,
+      schulCrseScCode
+    }).then(({ data }) => {
+      if (data.result.status === 'error') {
+        throw new Error(data.result.message);
+      }
+
+      function parseCalendar (ev) {
+        if (ev) {
+          let res = '';
+          ev.split('|').forEach(e => {
+            const eventSplited = e.split(':');
+            res += eventSplited[eventSplited.length - 2] + '\n';
+          });
+          return res.slice(0, res.length - 1);
+        } else {
+          return null;
+        }
+      }
+
+      const calendarData = [];
+      data.resultSVO.selectMonth.forEach(calendar => {
+        for (let i = 1; i <= 7; i++) {
+          const date = parseInt(calendar['day' + i]).toString();
+          const event = parseCalendar(calendar['event' + i]);
+          calendarData.push({ date, event });
+        }
+      });
+
+      const res = {};
+      calendarData.forEach(calendar => {
+        if (calendar && calendar.date && calendar.date !== 'NaN') {
+          res[calendar.date] = calendar.event || (option.default || '');
+        }
+      });
+
+      res.year = year;
+      res.month = month;
+      res.day = currentDate.getMonth() + 1 === month ? currentDate.getDate() : 0;
+      res.today = year === currentDate.getFullYear() &&
+                  month === (currentDate.getMonth() + 1) ?
+                  res[res.day] || '' : '';
 
       return res;
     });
