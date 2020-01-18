@@ -7,6 +7,8 @@
   
 전국 교육청 학생 서비스 페이지(stu.xxx.go.kr)를 파싱하여 이번 달 **학사일정**과 **급식 정보**를 JSON 데이터로 제공합니다.
 
+`3.0.0` 버전부터 파싱 방식이 아닌 API 호출을 통해 데이터를 수집하여 제공합니다.
+
 ## 설치하기
 [NPM](https://www.npmjs.com/package/school-kr) 저장소를 통해 다운로드 받을 수 있으며 별다른 작업 없이 바로 사용 가능합니다.
 ```bash
@@ -38,10 +40,25 @@ new School()
 [교육청 관할 지역](#교육청-관할-지역) 참조
 - - -
 
+### (Method) School.search
+지정한 지역의 학교를 검색하여 정보를 반환합니다.
+
+| Parameter | Type | Required |
+|:--|:--:|:--:|
+| region | Symbol | O |
+| name | string | O |
+
+Return type: `Promise<Array<any>>`
+
+```javascript
+const school = new School()
+school.school(region, name)
+```
+예제는 [학교 검색](#학교-검색) 참조
+- - -
+
 ### (Method) School.init
-인스턴스 정보를 초기화 합니다.
-> ※ 인스턴스 초기화는 인스턴스당 1회만 가능합니다.  
-> 설정 정보를 변경하려면 `reset`을 사용해주세요
+인스턴스 정보를 지정한 학교로 초기화 합니다.
 
 | Parameter | Type | Required |
 |:--|:--:|:--:|
@@ -58,54 +75,16 @@ school.init(type, region, schoolCode)
 예제는 [인스턴스 초기화](#인스턴스-초기화) 참조
 - - -
 
-### (Method) School.reset
-인스턴스 정보를 재설정 합니다.
-> ※ 인스턴스 초기화 이후에만 재설정 할 수 있습니다.
-
-| Parameter | Type | Required |
-|:--|:--:|:--:|
-| type | Symbol | O |
-| region | Symbol | O |
-| schoolCode | string | O |
-
-Return type: `void`
-
-```javascript
-...
-
-school.reset(type, region, schoolCode)
-```
-예제는 [인스턴스 재설정](#인스턴스-재설정) 참조
-- - -
-
-### (Method) School.getTargetURL
-지정한 Type의 데이터를 파싱하는 타겟 URL을 반환합니다.  
-년도와 월을 지정하지 않을 경우 **이번 년도 / 달** 데이터를 파싱하는 타겟 URL을 반환합니다.
-
-| Parameter | Type | Required |
-|:--|:--:|:--:|
-| type | string | O |
-| year | number | X |
-| month | number | X |
-
-Return type: `string`
-
-```javascript
-school.getTargetURL(type, year, month)
-```
-예제는 [타겟 URL 조회](#타겟-URL-조회) 참조
-- - -
-
 ### (Method) School.getMeal
 이번 달 또는 지정한 년도/월의 급식 데이터를 반환합니다  
-년도와 월을 지정하지 않을 경우 **이번 년도 / 달** 데이터를 반환합니다.  
+년도 또는 월을 지정하지 않을 경우 **현재 시점의 날짜** 기준의 데이터를 반환합니다.
 
 | Parameter | Type | Required |
 |:--|:--:|:--:|
-| year | number | X |
+| year | any | X |
 | month | number | X |
 
-Return type: [참고](#급식-데이터-형식)
+Return type: `Promise<any>`, [참고](#급식-데이터-형식)
 
 ```javascript
 school.getMeal(year, month)
@@ -115,14 +94,14 @@ school.getMeal(year, month)
 
 ### (Method) School.getCalendar
 이번 달 또는 지정한 년도/월의 학사일정 데이터를 반환합니다  
-년도와 월을 지정하지 않을 경우 **이번 년도 / 달** 데이터를 반환합니다.
+년도 또는 월을 지정하지 않을 경우 **현재 시점의 날짜** 기준의 데이터를 반환합니다.
 
 | Parameter | Type | Required |
 |:--|:--:|:--:|
-| year | number | X |
+| year | any | X |
 | month | number | X |
 
-Return type: [참고](#학사일정-데이터-형식)
+Return type: `Promise<any>`, [참고](#학사일정-데이터-형식)
 
 ```javascript
 school.getCalendar(year, month)
@@ -199,9 +178,8 @@ console.log(School.Region.SEOUL)
 
 ## 학교 코드
 
-학교 고유 코드는 [삭제됨](#)에서 학교명으로 검색할 수 있습니다.  
- 학교 코드는 `X000000000` 형식의 10자리 문자열입니다.
-(곧 학교 검색 스크립트가 라이브러리에 추가될 예정입니다.)
+`School.search()`를 통해 학교를 검색할 수 있습니다.  
+자세한 사용법은 [학교 검색](#학교-검색) 참조
 
 ## 사용 예시
 ※ 아래 예제는 경기도의 `광명경영회계고등학교`를 기준으로 진행됩니다.
@@ -220,36 +198,6 @@ const school = new School()
 school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488')
 ```
 
-### 인스턴스 재설정
-```javascript
-const School = require('school-kr')
-const school = new School()
-
-/* 경기도 광명시의 광명고등학교로 init() */
-school.init(School.Type.HIGH, School.Region.GYEONGGI,  'J100000482')
-
-/* 경기도 광명시의 광명경영회계고등학교로 재설정하는 코드 */
-school.reset(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488')
-```
-
-### 타겟 URL 조회
-급식 / 학사일정 정보는 타겟 URL에 접속하여 데이터를 파싱합니다.
-```javascript
-const School = require('school-kr') 
-const school = new School()
-
-school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488')
-
-// 급식, 학사일정 데이터 파싱 타겟 페이지 URL
-console.log(school.getTargetURL('meal', 2018, 5))  // 년도와 월 지정 가능
-console.log(school.getTargetURL('calendar')) // 지정하지 않을 경우 이번 달로 설정 됨
-
-/*
-https://stu.goe.go.kr/sts_sci_md00_001.do?schulCode=J100000488&schulCrseScCode=4&schulKndScCode=4&ay=2018&mm=05&
-https://stu.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100000488&schulCrseScCode=4&schulKndScCode=4&ay=&mm=&
-*/
-```
-
 ### 급식 및 학사일정 조회
 
 #### 사용 예시
@@ -257,9 +205,12 @@ https://stu.goe.go.kr/sts_sci_sf01_001.do?schulCode=J100000488&schulCrseScCode=4
 const School = require('school-kr') 
 const school = new School()
 
-school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488')
 
-const sampleAsync = async function() {
+const example = async function() {
+  // 학교 검색 및 첫 번째 결과의 학교 코드로 초기화
+  const result = await school.search(School.Region.GYEONGGI, '광명경영회계고')
+  school.init(School.Type.HIGH, School.Region.GYEONGGI, result[0].schoolCode)
+
   const meal = await school.getMeal()
   const calendar = await school.getCalendar()
 
@@ -288,16 +239,21 @@ const sampleAsync = async function() {
     month: 9,
     default: '급식이 없습니다'
   })
+
+  
+  // year, month 생략시 현재 시점 기준으로 조회됨
+  // separator는 하루에 2개 이상의 일정이 존재하는 경우
+  // 구분하기 위한 문자를 설정할 수 있습니다. 기본값: ,
   const optionCalendar = await school.getCalendar({
-    // year, month 생략시 현재 시점 기준으로 조회됨
-    default: '일정 없는 날'
+    default: '일정 없는 날',
+    separator: '\n'
   })
 
   console.log(optionMeal)
   console.log(optionCalendar)
 }
 
-sampleAsync()
+example()
 ```
 
 ### 급식 데이터 형식
@@ -307,9 +263,10 @@ sampleAsync()
 | Key | Value | 비고 |
 |:--|:--:|:--|
 | 1 ~ 31 | 해당 날짜의 급식 | 급식이 없는 경우 option.default 값 혹은  빈 문자열 |
-| month | 이번 달 | |
+| year | 조회 년도 | |
+| month | 조회 달 | |
 | day | 오늘 날짜 | 사용자 지정 년도/월이 이번 달이 아닌 경우 0 |
-| today | 오늘 급식 | 급식이 없는 경우 빈 문자열 |
+| today | 오늘 급식 | 급식이 없는 경우 기본 급식 값 |
 
 ```javascript
 {
@@ -332,8 +289,10 @@ sampleAsync()
 | Key | Value | 비고 |
 |:--|:--:|:--|
 | 1 ~ 31 | 해당 날짜의 일정 | 일정이 없는 경우 option.default 값 혹은 빈 문자열 |
-| year | 이번 년도 | |
-| month | 이번 달 | |
+| year | 조회 년도 | |
+| month | 조회 달 | |
+| day | 오늘 날짜 | 사용자 지정 년도/월이 이번 달이 아닌 경우 0 |
+| today | 오늘 급식 | 일정이 없는 경우 기본 일정 값 |
 
 ```javascript
 {
@@ -347,6 +306,8 @@ sampleAsync()
   ...
   'year': 2018,
   'month': 5 // 이번 달
+  'day': 4,  // 오늘 날짜 
+  'today': '개교기념일' // 오늘의 일정
 }
 ```
 
@@ -354,6 +315,13 @@ sampleAsync()
 교육청 홈페이지의 리뉴얼 등의 문제로 파싱이 불가능 할 수 있습니다. [이슈](https://github.com/leegeunhyeok/school-kr/issues)를 남겨주시면 최대한 빠르게 수정하여 반영하도록 하겠습니다.
 
 ## 변경사항
+- `3.0.0`
+  - node-school-kr -> school-kr로 모듈명 변경
+  - axios 라이브러리로 HTTP 요청 코드 변경
+  - 페이지 HTML 파싱 방식에서 API 데이터 요청 방식으로 변경함에 따라 데이터 수집 성능 개선
+  - 3.0.0 부터 사용하지 않음 (Deprecated)
+    - `School.reset`
+    - `School.getTargetURL`
 - `2.2.0`
   - [Issue #3](https://github.com/leegeunhyeok/school-kr/issues/3) 기본값 옵션 추가
   - `getMeal`, `getCalendar` 옵션 호출방식 추가
@@ -379,7 +347,7 @@ sampleAsync()
   - 코드 주석 업데이트
 - `1.0.1`
   - NPM 저장소와 이름 동일하게 Git 저장소 이름 변경 (이미 사용중인 이름)
-    - node-school -> school-kr
+    - node-school -> node-school-kr
   - README 문서 내용 수정
   - 에러 메시지 구분 문자 추가 (급식 파싱 에러인지 학사일정 파싱 에러인지 구분)
 - `1.0.0` - 첫 번째 릴리즈!
