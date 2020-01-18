@@ -96,6 +96,8 @@ class School {
   getMeal (year, month) {
     this._prepare();
     let option = {};
+    const currentDate = new Date();
+
     if (typeof year === 'object') {
       option = year;
       year = option['year'];
@@ -103,8 +105,8 @@ class School {
     } else if (
       year === undefined && month === undefined
     ) {
-      year = 0;
-      month = 0;
+      year = currentDate.getFullYear();
+      month = currentDate.getMonth() + 1;
     } else if (
       year === undefined || month === undefined
     ) {
@@ -117,12 +119,8 @@ class School {
 
     const mealRequestUrl = this._makeUrl(this._schoolRegion, this._mealUrl);
     return this._request.post(mealRequestUrl, {
-      ...(year ? {
-        ay: util.paddingNumber(year)
-      } : null),
-      ...(month ? {
-        mm: util.paddingNumber(month, 2)
-      } : null),
+      ay: util.paddingNumber(year),
+      mm: util.paddingNumber(month, 2),
       schulCode: this._schoolCode,
       schulCrseScCode: this._data.EDUTYPE[this._schoolType].toString()
     }).then(({ data }) => {
@@ -153,7 +151,7 @@ class School {
       }
 
       const mealData = [];
-      data.resultSVO.mthDietList.map(meal => {
+      data.resultSVO.mthDietList.forEach(meal => {
         mealData.push(parseMeal(meal.sun));
         mealData.push(parseMeal(meal.mon));
         mealData.push(parseMeal(meal.tue));
@@ -163,8 +161,19 @@ class School {
         mealData.push(parseMeal(meal.sat));
       });
 
-      // TODO: 급식 데이터 정제
-      return mealData;
+      const res = {};
+      mealData.forEach(meal => {
+        if (meal && meal.date) {
+          res[meal.date] = meal.menu || (option.default || '')
+        }
+      });
+
+      res.year = year
+      res.month = month
+      res.day = currentDate.getMonth() + 1 === month ? currentDate.getDate() : 0
+      res.today = res[res.day] || ''
+
+      return res;
     });
   }
 }
