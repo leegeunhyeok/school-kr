@@ -1,7 +1,5 @@
 /**
- * @description 코어 모듈
- * @author Leegeunhyeok
- * @version 3.0.0
+ * core
  */
 
 import axios from 'axios'
