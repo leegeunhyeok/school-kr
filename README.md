@@ -22,6 +22,18 @@ npm i school-kr
 npm test
 ```
 
+`v2` 버전과 `v3` 버전의 성능 비교
+
+<img width="200" src="./test_v2.png">
+
+- - -
+
+<img width="200" src="./test_v3.png">
+
+> v3는 v2 대비 약 25%의 성능이 향상됨 (네트워크 상태에 따라 일부 변동될 수 있음)
+
+테스트 코드는 `test/test_v2.js`, `test/test_v3.js` 참고
+
 ## 개발 문서
 
 ### School
@@ -317,8 +329,8 @@ example()
 ## 변경사항
 - `3.0.0`
   - node-school-kr -> school-kr로 모듈명 변경
-  - axios 라이브러리로 HTTP 요청 코드 변경
-  - 페이지 HTML 파싱 방식에서 API 데이터 요청 방식으로 변경함에 따라 데이터 수집 성능 개선
+  - HTTP 요청 코드를 기존의 request에서 모두 axios로 변경
+  - 페이지 HTML 파싱 방식에서 API 데이터 요청 방식으로 변경함에 따라 데이터 수집 성능 개선 - `약 25%`
   - 3.0.0 부터 사용하지 않음 (Deprecated)
     - `School.reset`
     - `School.getTargetURL`
