@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leegeunhyeok/node-school-kr.git"
+    "url": "git+https://github.com/leegeunhyeok/school-kr.git"
   },
   "keywords": [
     "school",
@@ -23,9 +23,9 @@
   "author": "Leegeunhyeok",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/leegeunhyeok/node-school-kr/issues"
+    "url": "https://github.com/leegeunhyeok/school-kr/issues"
   },
-  "homepage": "https://github.com/leegeunhyeok/node-school-kr#readme",
+  "homepage": "https://github.com/leegeunhyeok/school-kr#readme",
   "dependencies": {
     "axios": "^0.19.1"
   },
