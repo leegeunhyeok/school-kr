@@ -248,16 +248,21 @@ const example = async function() {
   console.log(calendarCustom)
 
   // 년도값 대신 옵션 객체를 전달하여 데이터 수집 가능
+  // year: 년도 (기본값: 현재 시점의 년도)
+  // month: 달 (기본값: 현재 시점의 달)
+  // default: 급식이 없는 경우 기본값 (기본값: '')
   const optionMeal = await school.getMeal({
     year: 2018,
     month: 9,
     default: '급식이 없습니다'
   })
 
-  
-  // year, month 생략시 현재 시점 기준으로 조회됨
-  // separator는 하루에 2개 이상의 일정이 존재하는 경우
-  // 구분하기 위한 문자를 설정할 수 있습니다. 기본값: ,
+  // 년도값 대신 옵션 객체를 전달하여 데이터 수집 가능
+  // year: 년도 (기본값: 현재 시점의 년도)
+  // month: 달 (기본값: 현재 시점의 달)
+  // default: 급식이 없는 경우 기본값 (기본값: '')
+  // separator: 하루에 2개 이상의 일정이 있는 경우의 구분문자 (기본값: ,)
+  //            예: 겨울방학,토요휴업일
   const optionCalendar = await school.getCalendar({
     default: '일정 없는 날',
     separator: '\n'
