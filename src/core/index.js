@@ -3,9 +3,17 @@
  */
 
 import axios from 'axios'
+import Data from '../../data';
+const { data } = Data;
 
 class RequestManager {
   constructor () {
+    // 교육청 교육청 관할 지역
+    this._region = null;
+
+    // 데이터
+    this._data = data;
+
     // 세션 ID
     this._sid = null;
 
@@ -17,6 +25,14 @@ class RequestManager {
   }
 
   /**
+   * 교육청 관할 지역 심볼 설정
+   * @param {Symbol} region 교육청 관할 지역 심볼
+   */
+  setRegion (region) {
+    this._region = region;
+  }
+
+  /**
    * HTTP GET 요청
    * @param {string} url 요청 URL
    * @param {any} config 요청 설정 객체
@@ -25,7 +41,7 @@ class RequestManager {
   get (url, config) {
     return this._prepare()
       .then(() => {
-        return axios.get(url, config);
+        return axios.get(this._makeUrl(url), config);
       });
   }
 
@@ -38,8 +54,17 @@ class RequestManager {
   post (url, config) {
     return this._prepare()
       .then(() => {
-        return axios.post(url, config);
+        return axios.post(this._makeUrl(url), config);
       });
+  }
+
+  /**
+   * 해당 지역 교육청의 요청 URL를 생성하여 반환합니다.
+   * @param {string} endPoint 데이터 수집 End-Point
+   */
+  _makeUrl (endPoint) {
+    const host = this._data.REGION[this._region];
+    return `https://${host}/${endPoint}`;
   }
 
   /**
@@ -68,7 +93,7 @@ class RequestManager {
    */
   _reload () {
     // 메인 페이지로 접속하여 세션 갱신
-    return axios.get('https://stu.goe.go.kr/edusys.jsp?page=sts_m40000')
+    return axios.get(this._makeUrl(this._data.mainUrl))
       .then(res => {
         // 쿠키에서 세션 ID 추출
         const sid = res.headers['set-cookie']

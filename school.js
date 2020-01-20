@@ -22,11 +22,11 @@ class School {
    * @constructor
    */
   constructor () {
-    this._request = new core.RequestManager(); // HTTP 요청 관리 객체
-    this._data = data;                         // 데이터 정의 객체
-    this._searchUrl = data.searchUrl;          // 검색 URL End-point
-    this._mealUrl = data.mealUrl;              // 급식 URL End-point
-    this._calendarUrl = data.calendarUrl;      // 학사일정 URL End-point
+    this._requestManager = new core.RequestManager(); // HTTP 요청 관리 객체
+    this._data = data;                    // 데이터 정의 객체
+    this._searchUrl = data.searchUrl;     // 검색 URL End-point
+    this._mealUrl = data.mealUrl;         // 급식 URL End-point
+    this._calendarUrl = data.calendarUrl; // 학사일정 URL End-point
 
     this._schoolType = null;   // init한 교육기관 유형 심볼 값
     this._schoolRegion = null; // init한 지역별 교육청 주소 심볼 값
@@ -42,16 +42,6 @@ class School {
     if (!this._init) {
       throw new Error('학교 정보가 설정되지 않았습니다.');
     }
-  }
-
-  /**
-   * 해당 지역 교육청의 요청 URL를 생성하여 반환합니다.
-   * @param {Symbol} region 교육청 관할 지역 심볼
-   * @param {string} endPoint 데이터 수집 End-Point
-   */
-  _makeUrl (region, endPoint) {
-    const host = this._data.REGION[region];
-    return `https://${host}/${endPoint}`;
   }
 
   /**
@@ -83,6 +73,7 @@ class School {
     this._schoolRegion = region;
     this._schoolCode = schoolCode;
     this._init = true;
+    this._requestManager.setRegion(region);
   }
 
   /**
@@ -99,7 +90,8 @@ class School {
       throw new Error('검색할 학교명을 확인해주세요');
     }
 
-    return this._request.post(this._makeUrl(region, this._searchUrl), {
+    this._requestManager.setRegion(region);
+    return this._requestManager.post(this._searchUrl, {
       kraOrgNm: name
     })
       .then(({ data }) => {
@@ -149,8 +141,7 @@ class School {
 
     const schulCrseScCode = this._data.EDUTYPE[this._schoolType].toString();
     const schulKndScCode = '0' + schulCrseScCode;
-    const mealRequestUrl = this._makeUrl(this._schoolRegion, this._mealUrl);
-    return this._request.post(mealRequestUrl, {
+    return this._requestManager.post(this._mealUrl, {
       ay: util.paddingNumber(this._getSemesterYear(year, month)),
       mm: util.paddingNumber(month, 2),
       schulCode: this._schoolCode,
@@ -248,10 +239,9 @@ class School {
     // 요청을 위한 파라미터 및 URL
     const schulCrseScCode = this._data.EDUTYPE[this._schoolType].toString();
     const schulKndScCode = '0' + schulCrseScCode;
-    const calendarRequestUrl = this._makeUrl(this._schoolRegion, this._calendarUrl);
 
     // 학사일정 데이터 요청
-    return this._request.post(calendarRequestUrl, {
+    return this._requestManager.post(this._calendarUrl, {
       ay: util.paddingNumber(this._getSemesterYear(year, month)),
       mm: util.paddingNumber(month, 2),
       schulCode: this._schoolCode,
