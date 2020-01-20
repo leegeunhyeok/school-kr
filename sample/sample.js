@@ -1,6 +1,5 @@
 /**
  * @description 샘플 테스트 코드입니다.
- * @version 3.0.0
  */
 
 // const School = require('node-school-kr')

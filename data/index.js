@@ -1,7 +1,6 @@
 /**
  * @description 지역별 교육청 주소, 교육기관 종류의 데이터 정의
  * @author Leegeunhyeok
- * @version 3.0.0
  */
 
 // 교육기관 유형 심볼 Namespace
@@ -61,9 +60,10 @@ const $DATA = {
     [$REGION.JEONNAM]: 'stu.jne.go.kr',   // 전남
     [$REGION.JEJU]: 'stu.jje.go.kr'       // 제주
   },
-  searchUrl: 'spr_ccm_cm01_100.ws', // 검색
-  mealUrl: 'sts_sci_md00_001.ws',    // 급식 URL
-  calendarUrl: 'sts_sci_sf01_001.ws' // 학사일정 URL
+  mainUrl: 'edusys.jsp?page=sts_m40000', // 메인 페이지
+  searchUrl: 'spr_ccm_cm01_100.ws',      // 검색
+  mealUrl: 'sts_sci_md00_001.ws',        // 급식 URL
+  calendarUrl: 'sts_sci_sf01_001.ws'     // 학사일정 URL
 };
 
 export default { type: $EDUTYPE, region: $REGION, data: $DATA };
