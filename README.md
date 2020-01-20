@@ -372,6 +372,8 @@ example()
 v3 미만의 버전을 사용하시는 경우 교육청 홈페이지의 리뉴얼 등의 문제로 파싱이 불가능 할 수 있습니다. v3 이상을 권장합니다. 문제가 발생할 경우 [이슈](https://github.com/leegeunhyeok/school-kr/issues)를 남겨주시면 최대한 빠르게 수정하여 반영하도록 하겠습니다.
 
 ## 변경사항
+- `3.0.1`
+  - [Issue #10](https://github.com/leegeunhyeok/school-kr/issues/10) 교육청 지역별 세션 유지하도록 수정
 - `3.0.0`
   - node-school-kr -> school-kr로 모듈명 변경
   - HTTP 요청 코드를 기존의 request에서 모두 axios로 변경
