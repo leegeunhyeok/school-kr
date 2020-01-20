@@ -1,7 +1,10 @@
 # school-kr
 > 전국 초, 등, 고등학교 및 병설유치원 급식, 학사일정 파싱 라이브러리
 
-[![npm version](https://badge.fury.io/js/school-kr.svg)](https://badge.fury.io/js/school-kr)
+[![npm version](https://img.shields.io/npm/v/school-kr.svg)](https://www.npmjs.com/package/school-kr)
+[![downloads](https://img.shields.io/npm/dm/school-kr.svg)](https://www.npmjs.com/package/school-kr)
+[![license](https://img.shields.io/npm/l/school-kr.svg)](https://www.npmjs.com/package/school-kr)
+[![action](https://github.com/leegeunhyeok/school-kr/workflows/build/badge.svg)](https://github.com/leegeunhyeok/school-kr/actions)
 
 본 라이브러리는 `Node.js` 환경에서 사용할 수 있는 Promise 기반의 `급식 API` + `학사일정 API` 통합 라이브러리 입니다.  
   
