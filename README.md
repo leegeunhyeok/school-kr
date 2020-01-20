@@ -27,11 +27,11 @@ npm test
 
 `v2` 버전과 `v3` 버전의 성능 비교
 
-<img width="200" src="./test_v2.png">
+<img width="200" src="./test/test_v2.png">
 
 - - -
 
-<img width="200" src="./test_v3.png">
+<img width="200" src="./test/test_v3.png">
 
 > v3는 v2 대비 약 25%의 성능이 향상됨 (네트워크 상태에 따라 일부 변동될 수 있음)
 
@@ -419,7 +419,7 @@ v3 미만의 버전을 사용하시는 경우 교육청 홈페이지의 리뉴�
 - `1.0.0` - 첫 번째 릴리즈!
 
 ## 라이센스
-[MIT](https://github.com/agemor/school-api/blob/master/LICENSE)
+[MIT](https://github.com/leegeunhyeok/school-kr/blob/master/LICENSE)
 
 
 ## 정보
