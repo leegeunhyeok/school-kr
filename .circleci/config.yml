@@ -20,6 +20,10 @@ jobs:
           name: Install dependancies
           command: npm install
 
+      - run:
+          name: Install babel-cli
+          command: npm install -D @babel/cli @babel/core @babel/node
+
       - save_cache:
           paths:
             - node_modules
