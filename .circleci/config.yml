@@ -8,6 +8,7 @@ defaults: &defaults
 jobs:
   test:
     <<: *defaults
+    type: approval
     steps:
       - checkout
 
@@ -40,6 +41,10 @@ jobs:
 
   build:
     <<: *defaults
+
+    requires:
+      - test
+
     steps:
       - attach_workspace:
           at: ~/repo
