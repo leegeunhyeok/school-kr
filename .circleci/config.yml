@@ -21,12 +21,8 @@ jobs:
           command: npm install
 
       - run:
-          name: Install babel-cli
-          command: npm install -D @babel/cli @babel/core @babel/node
-
-      - run:
-          name: Install npx
-          command: npm install -g npx
+          name: Install babel-cli & npx
+          command: npm install -D @babel/cli @babel/core @babel/node npx
 
       - save_cache:
           paths:
