@@ -67,7 +67,7 @@ Return type: `Promise<Array<any>>`, [참고](#검색-데이터-형식)
 
 ```javascript
 const school = new School()
-school.school(region, name)
+school.search(region, name)
 ```
 예제는 [학교 검색](#학교-검색) 참조
 - - -
