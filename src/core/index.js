@@ -41,7 +41,10 @@ class RequestManager {
   get (url, config) {
     return this._prepare()
       .then(() => {
-        return axios.get(this._makeUrl(url), config);
+        return axios.get(this._makeUrl(url), {
+          withCredentials: true,
+          ...config
+        });
       });
   }
 
@@ -54,7 +57,10 @@ class RequestManager {
   post (url, config) {
     return this._prepare()
       .then(() => {
-        return axios.post(this._makeUrl(url), config);
+        return axios.post(this._makeUrl(url), {
+          withCredentials: true,
+          ...config
+        });
       });
   }
 
