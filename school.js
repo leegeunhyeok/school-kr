@@ -45,16 +45,6 @@ class School {
   }
 
   /**
-   * 월을 확인하여 학기에 맞춰 년도를 변환합니다.
-   * 3월~내년 2월까지 1학기로 구분하므로 2020년 1월 조회시 2019년 1월로 조회해야함
-   * @param {number} year 년도
-   * @param {number} month 월
-   */
-  _getSemesterYear (year, month) {
-    return month <= 2 ? year - 1 : year;
-  }
-
-  /**
    * 해당 학교로 인스턴스를 초기화 합니다.
    * @param {Symbol} type 교육기관 심볼
    * @param {Symbol} region 교육청 관할 지역 심볼
@@ -142,7 +132,7 @@ class School {
     const schulCrseScCode = this._data.EDUTYPE[this._schoolType].toString();
     const schulKndScCode = '0' + schulCrseScCode;
     return this._requestManager.post(this._mealUrl, {
-      ay: util.paddingNumber(this._getSemesterYear(year, month)),
+      ay: util.paddingNumber(year),
       mm: util.paddingNumber(month, 2),
       schulCode: this._schoolCode,
       schulKndScCode,
@@ -242,7 +232,7 @@ class School {
 
     // 학사일정 데이터 요청
     return this._requestManager.post(this._calendarUrl, {
-      ay: util.paddingNumber(this._getSemesterYear(year, month)),
+      ay: util.paddingNumber(year),
       mm: util.paddingNumber(month, 2),
       schulCode: this._schoolCode,
       schulKndScCode,
