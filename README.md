@@ -4,7 +4,7 @@
 [![npm version](https://img.shields.io/npm/v/school-kr.svg)](https://www.npmjs.com/package/school-kr)
 [![downloads](https://img.shields.io/npm/dm/school-kr.svg)](https://www.npmjs.com/package/school-kr)
 [![license](https://img.shields.io/npm/l/school-kr.svg)](https://www.npmjs.com/package/school-kr)
-[![circleci](https://circleci.com/gh/leegeunhyeok/school-kr.svg)](https://circleci.com/gh/leegeunhyeok/school-kr)
+[![circleci](https://circleci.com/gh/leegeunhyeok/school-kr.svg?style=shield)](https://circleci.com/gh/leegeunhyeok/school-kr)
 
 본 라이브러리는 `Node.js` 환경에서 사용할 수 있는 Promise 기반의 `급식 API` + `학사일정 API` 통합 라이브러리 입니다.  
   
