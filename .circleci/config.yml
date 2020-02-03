@@ -1,14 +1,15 @@
 version: 2
 
-defaults: &defaults
-  working_directory: ~/repo
-  docker:
-    - image: circleci/node:7.10
+executors:
+  job-init:
+    docker:
+      - image: circleci/node:7.10
+    working_directory: ~/repo
 
 jobs:
   test:
-    <<: *defaults
-    type: approval
+    executor: job-init
+  
     steps:
       - checkout
 
@@ -30,20 +31,17 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
+      - run:
+          name: Test
+          command: npm run test
+
       - persist_to_workspace:
           root: ~/repo
           paths:
             - .
 
-      - run:
-          name: Test
-          command: npm test
-
   build:
-    <<: *defaults
-
-    requires:
-      - test
+    executor: job-init
 
     steps:
       - attach_workspace:
@@ -51,11 +49,13 @@ jobs:
 
       - run:
           name: Build
-          command: npm build
+          command: npm run build
 
 workflows:
   version: 2
-  test-build:
+  school-kr-build:
     jobs:
       - test
-      - build
+      - build:
+          requires:
+            - test
