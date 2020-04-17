@@ -103,7 +103,7 @@ class School {
    * 지정한 년-월의 급식 데이터를 가져옵니다.
    * 년-월을 지정하지 않으면 현재 시점의 날짜를 기준으로 조회합니다.
    * @param {any} [year] 년도(Year) 혹은 설정 객체
-   * @param {string} [name] 월(Month)
+   * @param {number} [month] 월(Month)
    */
   getMeal (year, month) {
     this._prepare();
@@ -197,7 +197,7 @@ class School {
    * 지정한 년-월의 학사일정 데이터를 가져옵니다.
    * 년-월을 지정하지 않으면 현재 시점의 날짜를 기준으로 조회합니다.
    * @param {any} [year] 년도(Year) 혹은 설정 객체
-   * @param {string} [name] 월(Month)
+   * @param {number} [month] 월(Month)
    */
   getCalendar (year, month) {
     this._prepare();
