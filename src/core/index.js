@@ -100,16 +100,16 @@ class RequestManager {
   _reload () {
     // 메인 페이지로 접속하여 세션 갱신
     return axios.get(this._makeUrl(this._data.mainUrl))
-      .then(res => {
+      .then((res) => {
         // 쿠키에서 세션 ID 추출
         const sid = res.headers['set-cookie']
           .join('')
           .match(/JSESSIONID=(.*?);/);
 
-        try {
+        if (sid) {
           this._sid = sid[1];
           this._expires = Date.now() + this._expiresTime;
-        } catch (_) {}
+        }
       });
   }
 }
