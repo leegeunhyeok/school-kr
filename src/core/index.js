@@ -109,9 +109,7 @@ class RequestManager {
         try {
           this._sid = sid[1];
           this._expires = Date.now() + this._expiresTime;
-        } catch (e) {
-          console.error(e);
-        }
+        } catch (_) {}
       });
   }
 }
