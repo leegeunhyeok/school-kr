@@ -26,7 +26,13 @@ declare module 'school-kr' {
     JEJU: Symbol;
   }
 
-  type Year = { year?: number; month?: number; default?: string; separator?: string } | number;
+  type Year = {
+    year?: number;
+    month?: number;
+    default?: string;
+    separator?: string;
+  } | number;
+
   interface Day {
     '1': string;
     '2': string;
@@ -61,34 +67,34 @@ declare module 'school-kr' {
     '31': string;
   }
 
-  interface searchReturnType {
+  interface SearchReturnType {
     name: string;
     schoolCode: string;
     address: string;
   }
 
-  interface getMealRetuenType extends Day {
+  interface MealRetuenType extends Day {
     year: number;
     month: number;
     day: number;
     today: string;
   }
 
-  interface getCalendarReturnType extends Day {
+  interface CalendarReturnType extends Day {
     year: number;
     month: number;
     day: number;
     today: string;
-  } 
+  }
 
   export default class SchoolKr {
     static Type: IType;
     static Region: IRegion;
 
     init(type: Symbol, region: Symbol, schoolCode: string): void;
-    getMeal(year?: Year, month?: number): Promise<getMealRetuenType>;
-    getCalendar(year?: Year, month?: number): Promise<getCalendarReturnType>;
+    getMeal(year?: Year, month?: number): Promise<MealRetuenType>;
+    getCalendar(year?: Year, month?: number): Promise<CalendarReturnType>;
 
-    search(region: Symbol, name: string): Promise<Array<searchReturnType>>
+    search(region: Symbol, name: string): Promise<Array<SearchReturnType>>
   }
 }

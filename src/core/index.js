@@ -3,7 +3,7 @@
  */
 
 import axios from 'axios';
-import Data from '../../data';
+import Data from '../data';
 const { data } = Data;
 
 class RequestManager {

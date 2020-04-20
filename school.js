@@ -14,7 +14,7 @@
 
 import core from './src/core';
 import util from './src/util';
-import Data from './data';
+import Data from './src/data';
 const { type, region, data } = Data;
 
 class School {
