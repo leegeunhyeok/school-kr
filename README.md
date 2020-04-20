@@ -377,7 +377,7 @@ v3 미만의 버전을 사용하시는 경우 교육청 홈페이지의 리뉴�
   - [Issue #16](https://github.com/leegeunhyeok/school-kr/issues/16) 타입스크립트 지원(d.ts 추가) - Thanks to [cjaewon](https://github.com/cjaewon)
   - ESLint 구성 추가 및 코드 스타일 수정
 - `3.0.3`
- - [Issue #15](https://github.com/leegeunhyeok/school-kr/issues/15) 모듈을 불러올 수 없던 문제 수정
+  - [Issue #15](https://github.com/leegeunhyeok/school-kr/issues/15) 모듈을 불러올 수 없던 문제 수정
 - `3.0.2`
   - [Issue #11](https://github.com/leegeunhyeok/school-kr/issues/11), [Issue #14](https://github.com/leegeunhyeok/school-kr/issues/14) 1년 이전 데이터가 파싱되던 문제 수정
 - `3.0.1`
