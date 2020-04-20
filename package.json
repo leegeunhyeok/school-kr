@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "npx babel-node index.js",
-    "build": "npx babel . --ignore node_modules --ignore sample -d dist/",
+    "build": "npx babel . --ignore node_modules --ignore sample --ignore test -d dist/",
     "test": "npx babel-node sample/sample.js",
     "lint": "eslint ."
   },

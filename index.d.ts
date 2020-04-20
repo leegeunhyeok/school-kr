@@ -26,12 +26,12 @@ declare module 'school-kr' {
     JEJU: Symbol;
   }
 
-  type Year = {
+  type Year = number | {
     year?: number;
     month?: number;
     default?: string;
     separator?: string;
-  } | number;
+  };
 
   interface Day {
     '1': string;
@@ -87,7 +87,7 @@ declare module 'school-kr' {
     today: string;
   }
 
-  export default class SchoolKr {
+  export default class School {
     static Type: IType;
     static Region: IRegion;
 
