@@ -89,7 +89,7 @@ class School {
           throw new Error(data.result.message);
         }
 
-        return data.resultSVO.orgDVOList.map(s => {
+        return data.resultSVO.orgDVOList.map((s) => {
           return {
             name: s.kraOrgNm,
             schoolCode: s.orgCode,
@@ -115,7 +115,7 @@ class School {
       year = option.year || currentDate.getFullYear();
       month = option.month || currentDate.getMonth() + 1;
     } else if (
-      year === undefined || month === undefined
+      typeof year === 'undefined' || typeof month === 'undefined'
     ) {
       year = currentDate.getFullYear();
       month = currentDate.getMonth() + 1;
@@ -165,7 +165,7 @@ class School {
       }
 
       const mealData = [];
-      data.resultSVO.mthDietList.forEach(meal => {
+      data.resultSVO.mthDietList.forEach((meal) => {
         mealData.push(parseMeal(meal.sun));
         mealData.push(parseMeal(meal.mon));
         mealData.push(parseMeal(meal.tue));
@@ -176,7 +176,7 @@ class School {
       });
 
       const res = {};
-      mealData.forEach(meal => {
+      mealData.forEach((meal) => {
         if (meal && meal.date) {
           res[meal.date] = meal.menu || (option.default || '');
         }
@@ -211,7 +211,7 @@ class School {
       year = option.year || currentDate.getFullYear();
       month = option.month || currentDate.getMonth() + 1;
     } else if (
-      year === undefined || month === undefined
+      typeof year === 'undefined' || typeof month === 'undefined'
     ) {
       // 인자가 없는 경우 현재 시점의 날짜로 설정
       year = currentDate.getFullYear();
@@ -251,7 +251,7 @@ class School {
         if (ev) {
           let res = '';
           // 하루에 2개 이상의 일정이 있는 경우 | 로 구분되어있음
-          ev.split('|').forEach(e => {
+          ev.split('|').forEach((e) => {
             // : 문자로 학사일정에 날짜,일정 등이 구분되어있으며 뒤에서 두 번째 값이 학사일정 값
             const eventSplited = e.split(':');
             res += eventSplited[eventSplited.length - 2] + sep;
@@ -266,7 +266,7 @@ class School {
 
       // 데이터를 순회하며 값을 정제합니다.
       const calendarData = [];
-      data.resultSVO.selectMonth.forEach(calendar => {
+      data.resultSVO.selectMonth.forEach((calendar) => {
         // day1, event1 과 같은 형식의 프로퍼티에 날짜와 학사일정 데이터가 존재함
         for (let i = 1; i <= 7; i++) {
           const date = parseInt(calendar['day' + i]).toString();
@@ -277,7 +277,7 @@ class School {
 
       // 수집한 데이터에서 빈 데이터 및 확인된 데이터만 필더링하여 객체에 저장
       const res = {};
-      calendarData.forEach(calendar => {
+      calendarData.forEach((calendar) => {
         if (calendar && calendar.date && calendar.date !== 'NaN') {
           // 확인된 데이터만 추가
           res[calendar.date] = calendar.event || (option.default || '');
