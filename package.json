@@ -1,6 +1,6 @@
 {
   "name": "school-kr",
-  "version": "3.0.3",
+  "version": "3.1.0",
   "description": "Node.js 기반 전국 교육청의 급식, 학사일정 API 라이브러리",
   "main": "./dist/entry.js",
   "type": "./index.d.ts",
@@ -15,9 +15,18 @@
   },
   "remarkConfig": {
     "plugins": [
-      ["no-duplicate-headings", false],
-      ["table-pipe-alignment", false],
-      ["list-item-indent", false]
+      [
+        "no-duplicate-headings",
+        false
+      ],
+      [
+        "table-pipe-alignment",
+        false
+      ],
+      [
+        "list-item-indent",
+        false
+      ]
     ]
   },
   "repository": {

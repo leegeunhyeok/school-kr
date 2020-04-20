@@ -372,6 +372,14 @@ example()
 v3 미만의 버전을 사용하시는 경우 교육청 홈페이지의 리뉴얼 등의 문제로 파싱이 불가능 할 수 있습니다. v3 이상 사용을 권장하며, 문제가 발생할 경우 [이슈](https://github.com/leegeunhyeok/school-kr/issues)를 남겨주시면 최대한 빠르게 수정하여 반영하도록 하겠습니다.
 
 ## 변경사항
+- `3.1.0`
+  - [Issue #9](https://github.com/leegeunhyeok/school-kr/issues/9) 세션 관련 로직 개선 (확인 필요)
+  - [Issue #16](https://github.com/leegeunhyeok/school-kr/issues/16) 타입스크립트 지원(d.ts 추가) - Thanks to [cjaewon](https://github.com/cjaewon)
+  - ESLint 구성 추가 및 코드 스타일 수정
+- `3.0.3`
+ - [Issue #15](https://github.com/leegeunhyeok/school-kr/issues/15) 모듈을 불러올 수 없던 문제 수정
+- `3.0.2`
+  - [Issue #11](https://github.com/leegeunhyeok/school-kr/issues/11), [Issue #14](https://github.com/leegeunhyeok/school-kr/issues/14) 1년 이전 데이터가 파싱되던 문제 수정
 - `3.0.1`
   - [Issue #10](https://github.com/leegeunhyeok/school-kr/issues/10) 교육청 지역별 세션 유지하도록 수정
 - `3.0.0`
