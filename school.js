@@ -112,8 +112,8 @@ class School {
 
     if (typeof year === 'object') {
       option = year;
-      year = option['year'] || currentDate.getFullYear();
-      month = option['month'] || currentDate.getMonth() + 1;
+      year = option.year || currentDate.getFullYear();
+      month = option.month || currentDate.getMonth() + 1;
     } else if (
       year === undefined || month === undefined
     ) {
@@ -125,7 +125,7 @@ class School {
       throw new Error('년도(year) 값을 확인해주세요');
     }
 
-    if (month !== 0 && month < 1 || month > 12) {
+    if ((month !== 0 && month < 1) || month > 12) {
       throw new Error('월(month)은 1~12 범위로 지정해주세요');
     }
 
@@ -186,8 +186,8 @@ class School {
       res.month = month;
       res.day = currentDate.getMonth() + 1 === month ? currentDate.getDate() : 0;
       res.today = year === currentDate.getFullYear() &&
-                  month === (currentDate.getMonth() + 1) ?
-                  res[res.day] || '' : '';
+        month === (currentDate.getMonth() + 1)
+        ? res[res.day] || '' : '';
 
       return res;
     });
@@ -208,8 +208,8 @@ class School {
     if (typeof year === 'object') {
       // year에 옵션 객체를 전달한 경우
       option = year;
-      year = option['year'] || currentDate.getFullYear();
-      month = option['month'] || currentDate.getMonth() + 1;
+      year = option.year || currentDate.getFullYear();
+      month = option.month || currentDate.getMonth() + 1;
     } else if (
       year === undefined || month === undefined
     ) {
@@ -222,7 +222,7 @@ class School {
       throw new Error('년도(year) 값을 확인해주세요');
     }
 
-    if (month !== 0 && month < 1 || month > 12) {
+    if ((month !== 0 && month < 1) || month > 12) {
       throw new Error('월(month)은 1~12 범위로 지정해주세요');
     }
 
@@ -289,8 +289,8 @@ class School {
       res.month = month;
       res.day = currentDate.getMonth() + 1 === month ? currentDate.getDate() : 0;
       res.today = year === currentDate.getFullYear() &&
-                  month === (currentDate.getMonth() + 1) ?
-                  res[res.day] || '' : '';
+        month === (currentDate.getMonth() + 1)
+        ? res[res.day] || '' : '';
 
       return res;
     });

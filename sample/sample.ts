@@ -1,4 +1,4 @@
-import School from 'school-kr';
+import School from '../entry';
 const school = new School()
 
 const example = async function() {

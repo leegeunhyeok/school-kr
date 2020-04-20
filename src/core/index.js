@@ -2,7 +2,7 @@
  * core
  */
 
-import axios from 'axios'
+import axios from 'axios';
 import Data from '../../data';
 const { data } = Data;
 
@@ -83,10 +83,10 @@ class RequestManager {
         // 세션 ID가 존재하지 않거나 만료된 경우 새로 갱신
         this._reload().then(() => {
           axios.defaults.headers.common = {
-            'Cookie': 'JSESSIONID=' + this._sid
+            Cookie: 'JSESSIONID=' + this._sid
           };
           resolve();
-        })
+        });
       } else {
         resolve();
       }
@@ -106,8 +106,12 @@ class RequestManager {
           .join('')
           .match(/JSESSIONID=(.*?);/);
 
-        this._sid = sid[1];
-        this._expires = Date.now() + this._expiresTime;
+        try {
+          this._sid = sid[1];
+          this._expires = Date.now() + this._expiresTime;
+        } catch (e) {
+          console.error(e);
+        }
       });
   }
 }
