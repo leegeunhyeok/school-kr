@@ -102,14 +102,20 @@ class RequestManager {
     return axios.get(this._makeUrl(this._data.mainUrl))
       .then((res) => {
         // 쿠키에서 세션 ID 추출
-        const sid = res.headers['set-cookie']
+        const cookie = res.headers['set-cookie'];
+
+        if (!(cookie && Array.isArray(cookie))) {
+          return;
+        }
+
+        const sid = cookie
           .join('')
           .match(/JSESSIONID=(.*?);/);
 
         if (sid) {
           this._sid = sid[1];
-          this._expires = Date.now() + this._expiresTime;
         }
+        this._expires = Date.now() + this._expiresTime;
       });
   }
 }
