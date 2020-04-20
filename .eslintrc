@@ -15,6 +15,7 @@
     "indent": ["error", 2],
     "prefer-const": "error",
     "array-bracket-spacing": "error",
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"]
   }
 }
