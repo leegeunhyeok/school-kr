@@ -8,7 +8,7 @@
  * @param {number} length 0을 채워 length 길이로 만들기
  */
 const paddingNumber = (number, length) => {
-  if (length === undefined) {
+  if (typeof length === 'undefined') {
     return number.toString();
   }
 
