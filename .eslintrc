@@ -1,0 +1,20 @@
+{
+  "extends": "eslint:recommended",
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "no-console": "off",
+    "no-prototype-builtins": "error",
+    "no-multiple-empty-lines": "error",
+    "no-multi-spaces": "off",
+    "keyword-spacing": "error",
+    "space-before-blocks": "error",
+    "indent": ["error", 2],
+    "prefer-const": "error",
+    "array-bracket-spacing": "error",
+    "semi": ["error", "always"]
+  }
+}
