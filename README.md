@@ -372,6 +372,9 @@ example()
 v3 미만의 버전을 사용하시는 경우 교육청 홈페이지의 리뉴얼 등의 문제로 파싱이 불가능 할 수 있습니다. v3 이상 사용을 권장하며, 문제가 발생할 경우 [이슈](https://github.com/leegeunhyeok/school-kr/issues)를 남겨주시면 최대한 빠르게 수정하여 반영하도록 하겠습니다.
 
 ## 변경사항
+- `3.1.1`
+  - [Issue #19](https://github.com/leegeunhyeok/school-kr/issues/19) 서로 다른 지역의 학교 데이터를 불러올 경우 발생하던 문제 수정 (검색, 급식, 공지 모두 해당함)
+  - 개발 의존성 모듈 업데이트
 - `3.1.0`
   - [Issue #9](https://github.com/leegeunhyeok/school-kr/issues/9) 세션 관련 로직 개선 (확인 필요)
   - [Issue #16](https://github.com/leegeunhyeok/school-kr/issues/16) 타입스크립트 지원(d.ts 추가) - Thanks to [cjaewon](https://github.com/cjaewon)

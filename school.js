@@ -3,7 +3,7 @@
  * @description 전국 교육청 급식, 학사일정 파싱 라이브러리
  * @author Leegeunhyeok
  * @license MIT
- * @version 3.1.0
+ * @version 3.1.1
  *
  * Github : https://github.com/leegeunhyeok/school-kr
  * NPM : https://www.npmjs.com/package/school-kr
