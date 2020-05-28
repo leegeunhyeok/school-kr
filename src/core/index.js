@@ -22,6 +22,9 @@ class RequestManager {
 
     // 세션 갱신 시간
     this._expiresTime = 1000 * 60 * 30;
+
+    // 세션 업데이트 필요 여부 플래그
+    this._needUpdate = true;
   }
 
   /**
@@ -30,6 +33,7 @@ class RequestManager {
    */
   setRegion (region) {
     this._region = region;
+    this._needUpdate = true;
   }
 
   /**
@@ -79,9 +83,10 @@ class RequestManager {
    */
   _prepare () {
     return new Promise(resolve => {
-      if (!this._sid || this._expires < +new Date()) {
+      if (this._needUpdate || !this._sid || this._expires < +new Date()) {
         // 세션 ID가 존재하지 않거나 만료된 경우 새로 갱신
         this._reload().then(() => {
+          this._needUpdate = false;
           axios.defaults.headers.common = {
             Cookie: 'JSESSIONID=' + this._sid
           };
