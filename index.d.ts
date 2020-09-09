@@ -12,7 +12,7 @@ declare module 'school-kr' {
     BUSAN: Symbol;
     GWANGJU: Symbol;
     DAEJEON: Symbol;
-    DEAGU: Symbol;
+    DAEGU: Symbol;
     SEJONG: Symbol;
     ULSAN: Symbol;
     GYEONGGI: Symbol;
