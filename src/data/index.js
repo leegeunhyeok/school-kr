@@ -18,7 +18,7 @@ const $REGION = {
   BUSAN: Symbol('BUSAN'),
   GWANGJU: Symbol('GWANGJU'),
   DAEJEON: Symbol('DAEJEON'),
-  DEAGU: Symbol('DEAGU'),
+  DAEGU: Symbol('DAEGU'),
   SEJONG: Symbol('SEJONG'),
   ULSAN: Symbol('ULSAN'),
   GYEONGGI: Symbol('GYEONGGI'),
@@ -47,7 +47,7 @@ const $DATA = {
     [$REGION.BUSAN]: 'stu.pen.go.kr',     // 부산
     [$REGION.GWANGJU]: 'stu.gen.go.kr',   // 광주
     [$REGION.DAEJEON]: 'stu.dje.go.kr',   // 대전
-    [$REGION.DEAGU]: 'stu.dge.go.kr',     // 대구
+    [$REGION.DAEGU]: 'stu.dge.go.kr',     // 대구
     [$REGION.SEJONG]: 'stu.sje.go.kr',    // 세종
     [$REGION.ULSAN]: 'stu.use.go.kr',     // 울산
     [$REGION.GYEONGGI]: 'stu.goe.go.kr',  // 경기
