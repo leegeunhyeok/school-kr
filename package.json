@@ -3,7 +3,7 @@
   "version": "3.1.1",
   "description": "Node.js 기반 전국 교육청의 급식, 학사일정 API 라이브러리",
   "main": "./dist/entry.js",
-  "type": "./index.d.ts",
+  "types": "./index.d.ts",
   "engines": {
     "node": ">= 7.0.0"
   },
@@ -45,7 +45,7 @@
   },
   "homepage": "https://github.com/leegeunhyeok/school-kr#readme",
   "dependencies": {
-    "axios": "^0.19.1"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
