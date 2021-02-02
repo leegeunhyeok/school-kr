@@ -239,6 +239,7 @@ class School {
       schulCrseScCode
     }).then(({ data }) => {
       // 응답 값 확인
+      console.log(data);
       if (data.result.status === 'error') {
         throw new Error(data.result.message);
       }
