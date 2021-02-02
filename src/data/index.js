@@ -63,7 +63,8 @@ const $DATA = {
   mainUrl: 'edusys.jsp?page=sts_m40000', // 메인 페이지
   searchUrl: 'spr_ccm_cm01_100.ws',      // 검색
   mealUrl: 'sts_sci_md00_001.ws',        // 급식 URL
-  calendarUrl: 'sts_sci_sf01_001.ws'     // 학사일정 URL
+  calendarMonthUrl: 'sts_sci_sf01_001.ws',     // 학사 월간일정 URL
+  calendarYearUrl: 'sts_sci_sf00_001.ws',
 };
 
 export default { type: $EDUTYPE, region: $REGION, data: $DATA };

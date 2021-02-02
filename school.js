@@ -26,7 +26,8 @@ class School {
     this._data = data;                    // 데이터 정의 객체
     this._searchUrl = data.searchUrl;     // 검색 URL End-point
     this._mealUrl = data.mealUrl;         // 급식 URL End-point
-    this._calendarUrl = data.calendarUrl; // 학사일정 URL End-point
+    this._calendarMonthUrl = data.calendarMonthUrl; // 학사일정 URL End-point
+    this._calendarYearUrl = data.calendarYearUrl;
 
     this._schoolType = null;   // init한 교육기관 유형 심볼 값
     this._schoolRegion = null; // init한 지역별 교육청 주소 심볼 값
@@ -230,20 +231,94 @@ class School {
     const schulCrseScCode = this._data.EDUTYPE[this._schoolType].toString();
     const schulKndScCode = '0' + schulCrseScCode;
 
+    // 새학기일 경우 2월달 이전의 달에 대한 학사 일정을 가져오는 예외처리 
+    if (new Date().getFullYear() === year  && month <= 2 ) {
+      return this._requestManager.post(this._calendarYearUrl, {
+        ay: util.paddingNumber(year - 1), // 이전 년도 데이터를 사용
+        schulCode: this._schoolCode,
+        schulKndScCode,
+        schulCrseScCode,
+        sem: '2', // 2학기
+      }).then(({ data }) => {
+        // 응답 값 확인
+        if (data.result.status === 'error') {
+          throw new Error(data.result.message);
+        }
+
+        /**
+         * 학사일정 데이터로부터 날짜를 정제하여 반환합니다.
+         * @param {string} ev 학사일정 값
+        */
+
+        /**
+         * 학사일정 데이터를 정제하여 반환합니다.
+         * @param {string} ev 학사일정 값
+         */
+        function parseCalendar (ev, sep) {
+          if (ev) {
+            let res = '';
+            // 하루에 2개 이상의 일정이 있는 경우 | 로 구분되어있음
+            ev.split('|').forEach((e) => {
+              // : 문자로 학사일정에 날짜,일정 등이 구분되어있으며 뒤에서 두 번째 값이 학사일정 값
+              const eventSplited = e.split(':');
+              res += eventSplited[eventSplited.length - 2] + sep;
+            });
+  
+            // 맨 뒤의 구분자 삭제
+            return res.slice(0, res.length - sep.length);
+          } else {
+            return null;
+          }
+        }
+
+        // 데이터를 순회하며 값을 정제합니다.
+        // 연간일정은 day + i 는 요일, dd 는 날짜를 의미합니다.
+        // 2학기는 9월에서 2월까지 입니다.
+        // 따라서 day5, day6는 1월달 2월달 데이터를 의미합니다.
+
+        const calendarData = [];
+        data.resultSVO.selectYear.forEach((calendar, i) => {
+          // day1, event1 과 같은 형식의 프로퍼티에 날짜와 학사일정 데이터가 존재함
+
+          const event = parseCalendar(calendar['event' + (4 + month)], option.separator || ',');
+          const date = event !== 'undefined' ? i + 1 : null;
+          
+          calendarData.push({ date, event });
+        });
+
+        // 수집한 데이터에서 빈 데이터 및 확인된 데이터만 필더링하여 객체에 저장
+        const res = {};
+        calendarData.forEach((calendar) => {
+          if (calendar && calendar.date && calendar.date !== 'NaN') {
+            // 확인된 데이터만 추가
+            res[calendar.date] = calendar.event || (option.default || '');
+          }
+        });
+  
+        // 년도, 월, 오늘 날짜, 오늘의 학사일정 값을 상황에 맞게 추가합니다.
+        res.year = year;
+        res.month = month;
+        res.day = currentDate.getMonth() + 1 === month ? currentDate.getDate() : 0;
+        res.today = year === currentDate.getFullYear() &&
+          month === (currentDate.getMonth() + 1)
+          ? res[res.day] || '' : '';
+  
+        return res;
+      });
+    }
+
     // 학사일정 데이터 요청
-    return this._requestManager.post(this._calendarUrl, {
+    return this._requestManager.post(this._calendarMonthUrl, {
       ay: util.paddingNumber(year),
       mm: util.paddingNumber(month, 2),
       schulCode: this._schoolCode,
       schulKndScCode,
-      schulCrseScCode
+      schulCrseScCode,
     }).then(({ data }) => {
       // 응답 값 확인
-      console.log(data);
       if (data.result.status === 'error') {
         throw new Error(data.result.message);
       }
-
       /**
        * 학사일정 데이터를 정제하여 반환합니다.
        * @param {string} ev 학사일정 값
@@ -285,6 +360,8 @@ class School {
         }
       });
 
+
+      
       // 년도, 월, 오늘 날짜, 오늘의 학사일정 값을 상황에 맞게 추가합니다.
       res.year = year;
       res.month = month;
