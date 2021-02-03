@@ -281,9 +281,9 @@ class School {
           // day1, event1 과 같은 형식의 프로퍼티에 날짜와 학사일정 데이터가 존재함
 
           const event = parseCalendar(calendar['event' + (4 + month)], option.separator || ',');
-          const date = event !== 'undefined' ? i + 1 : null;
+          // const date = event !== 'undefined' ? i + 1 : null;
           
-          calendarData.push({ date, event });
+          calendarData.push({ date: i + 1, event: event !== 'undefined' ? event : null });
         });
 
         // 수집한 데이터에서 빈 데이터 및 확인된 데이터만 필더링하여 객체에 저장
