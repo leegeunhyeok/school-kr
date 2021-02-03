@@ -14,9 +14,9 @@ async function sample () {
   console.log('검색 결과:', result);
 
   // 경기도 지역의 광명경영회계고등학교로 초기화
-  school.init(School.Type.MIDDLE, School.Region.BUSAN, 'C100000795');
+  school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488');
 
-  const meal = await school.getMeal();
+  // const meal = await school.getMeal();
   // const meal = await school.getMeal(2020, 3)
   // const meal = await school.getMeal({
   //   year: 2020,
