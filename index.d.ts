@@ -1,12 +1,12 @@
 declare module 'school-kr' {
-  interface IType {
+  export interface IType {
     KINDERGARTEN: Symbol;
     ELEMENTARY: Symbol;
     MIDDLE: Symbol;
     HIGH: Symbol;
   }
 
-  interface IRegion {
+  export interface IRegion {
     SEOUL: Symbol;
     INCHEON: Symbol;
     BUSAN: Symbol;
@@ -26,14 +26,14 @@ declare module 'school-kr' {
     JEJU: Symbol;
   }
 
-  type Year = number | {
+  export type Year = number | {
     year?: number;
     month?: number;
     default?: string;
     separator?: string;
   };
 
-  interface Day {
+  export interface Day {
     '1': string;
     '2': string;
     '3': string;
@@ -67,20 +67,20 @@ declare module 'school-kr' {
     '31': string;
   }
 
-  interface SearchReturnType {
+  export interface SearchReturnType {
     name: string;
     schoolCode: string;
     address: string;
   }
 
-  interface MealRetuenType extends Day {
+  export interface MealRetuenType extends Day {
     year: number;
     month: number;
     day: number;
     today: string;
   }
 
-  interface CalendarReturnType extends Day {
+  export interface CalendarReturnType extends Day {
     year: number;
     month: number;
     day: number;

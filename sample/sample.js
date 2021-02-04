@@ -16,8 +16,8 @@ async function sample () {
   // 경기도 지역의 광명경영회계고등학교로 초기화
   school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488');
 
-  const meal = await school.getMeal();
-  // const meal = await scool.getMeal(2020, 3)
+  // const meal = await school.getMeal();
+  // const meal = await school.getMeal(2020, 3)
   // const meal = await school.getMeal({
   //   year: 2020,
   //   month: 3,
@@ -25,8 +25,8 @@ async function sample () {
   // })
 
   const calendar = await school.getCalendar();
-  // const meal = await scool.getCalendar(2020, 3)
-  // const meal = await school.getMeal({
+  // const calendar = await school.getCalendar(2020, 3)
+  // const calendar = await school.getCalendar({
   //   year: 2020,
   //   month: 3,
   //   default: '일정 없음',
