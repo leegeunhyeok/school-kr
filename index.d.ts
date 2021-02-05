@@ -26,12 +26,14 @@ declare module 'school-kr' {
     JEJU: Symbol;
   }
 
-  export type Year = number | {
-    year?: number;
-    month?: number;
-    default?: string;
-    separator?: string;
-  };
+  export type Year =
+    | number
+    | {
+        year?: number;
+        month?: number;
+        default?: string;
+        separator?: string;
+      };
 
   export interface Day {
     '1': string;
@@ -95,6 +97,6 @@ declare module 'school-kr' {
     getMeal(year?: Year, month?: number): Promise<MealRetuenType>;
     getCalendar(year?: Year, month?: number): Promise<CalendarReturnType>;
 
-    search(region: Symbol, name: string): Promise<Array<SearchReturnType>>
+    search(region: Symbol, name: string): Promise<Array<SearchReturnType>>;
   }
 }

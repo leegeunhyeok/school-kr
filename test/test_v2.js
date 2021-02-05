@@ -2,7 +2,7 @@ const School = require('node-school-kr');
 const school = new School();
 school.init(School.Type.HIGH, School.Region.GYEONGGI, 'J100000488');
 
-async function meal (iter) {
+async function meal(iter) {
   const sTime = new Date();
   for (let i = 0; i < iter; i++) {
     console.time('meal_v2_' + i);
@@ -12,7 +12,7 @@ async function meal (iter) {
   console.log(`Meal avg: ${(new Date() - sTime) / iter}`);
 }
 
-async function calendar (iter) {
+async function calendar(iter) {
   const sTime = new Date();
   for (let i = 0; i < iter; i++) {
     console.time('calendar_v2_' + i);
@@ -22,7 +22,7 @@ async function calendar (iter) {
   console.log(`Calendar avg: ${(new Date() - sTime) / iter}ms`);
 }
 
-async function test (iter) {
+async function test(iter) {
   await meal(iter);
   console.log('=========================');
   await calendar(iter);
