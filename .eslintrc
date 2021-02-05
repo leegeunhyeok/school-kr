@@ -1,5 +1,5 @@
 {
-  "extends": "eslint:recommended",
+  "extends": ["eslint:recommended"],
   "parser": "babel-eslint",
   "env": {
     "node": true,
@@ -12,7 +12,7 @@
     "no-multi-spaces": "off",
     "keyword-spacing": "error",
     "space-before-blocks": "error",
-    "indent": ["error", 2],
+    "indent": "off",
     "prefer-const": "error",
     "array-bracket-spacing": "error",
     "semi": ["error", "always"],
