@@ -3,7 +3,7 @@
 > 전국 초, 등, 고등학교 및 병설유치원 급식, 학사일정 파싱 라이브러리
 
 [![npm version](https://img.shields.io/npm/v/school-kr.svg)](https://www.npmjs.com/package/school-kr)
-[![downloads](https://img.shields.io/npm/dm/school-kr.svg)](https://www.npmjs.com/package/school-kr)
+[![downloads](https://img.shields.io/npm/dt/school-kr.svg)](https://www.npmjs.com/package/school-kr)
 [![license](https://img.shields.io/npm/l/school-kr.svg)](https://www.npmjs.com/package/school-kr)
 [![circleci](https://circleci.com/gh/leegeunhyeok/school-kr.svg?style=shield)](https://circleci.com/gh/leegeunhyeok/school-kr)
 
@@ -12,6 +12,8 @@
 전국 교육청 학생 서비스 페이지(stu.xxx.go.kr)를 파싱하여 이번 달 **학사일정**과 **급식 정보**를 JSON 데이터로 제공합니다.
 
 `3.0.0` 버전부터 파싱 방식이 아닌 API 호출을 통해 데이터를 수집하여 제공합니다.
+
+- `시간표 정보`도 필요하신가요? 그렇다면 [comcigan-parser](https://github.com/leegeunhyeok/comcigan-parser) 라이브러리도 함께 확인해보세요!
 
 ## 설치하기
 
